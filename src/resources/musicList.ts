@@ -5,6 +5,8 @@ export const musicList = [
         songName: 'Beso',
         filePath: '../music/Josean_Log_Beso.mp3',
         duration: 211,
+        favorite: true,
+        popular: true,
     },
     {
         id: 1,
@@ -12,6 +14,8 @@ export const musicList = [
         songName: 'Chachacha',
         filePath: '../music/Josean_Log_Chachacha.mp3',
         duration: 216,
+        favorite: false,
+        popular: true,
     },
     {
         id: 2,
@@ -20,6 +24,8 @@ export const musicList = [
         filePath: '../music/Josean_Log_Doma.mp3',
         imagePath: 'images/doma.jpg',
         duration: 188,
+        favorite: true,
+        popular: true,
     },
     {
         id: 3,
@@ -27,6 +33,8 @@ export const musicList = [
         songName: 'La Luna',
         filePath: '../music/Josean_Log_La_Luna.mp3',
         duration: 243,
+        favorite: false,
+        popular: true,
     },
     {
         id: 4,
@@ -34,6 +42,8 @@ export const musicList = [
         songName: 'Tierra',
         filePath: '../music/Josean_Log_Tierra.mp3',
         duration: 182,
+        favorite: true,
+        popular: false,
     },
     {
         id: 5,
@@ -41,12 +51,16 @@ export const musicList = [
         songName: 'Dewey, Cheedham, and Howe (Sting)',
         filePath: '../music/John_Deley.mp3',
         duration: 7,
-    },
+        favorite: false,
+        popular: false,
+   },
     {
         id: 6,
         artist: 'MK2',
         songName: 'Hero Theme (Sting)',
         filePath: '../music/Hero_Theme.mp3',
-        duration: 10
-    }
+        duration: 10,
+        favorite: false,
+        popular: false,
+   }
 ];

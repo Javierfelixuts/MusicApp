@@ -18,5 +18,11 @@ export const useMusicList = defineStore('musicList', {
       });
       return musicFiltered;
     },
+    getMyFavoriteMusicList(){
+      return this.musicListState.filter(song => song.favorite)
+    },
+    getPopularMusicList(){
+      return this.musicListState.filter(song => song.popular)
+    }
   },
 })

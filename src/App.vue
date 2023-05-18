@@ -38,21 +38,25 @@ export default {
     const onBeforeEnter = (el:any) => {
       gsap.to(el, {
         xPercent: 0,
+        duration: 0.5,
+        y: 1000
       });
     }
     const onEnter = (el:any, done:any) => {
       gsap.to(el,{
         //delay: 1.5,
-        duration: 2.1,
+        duration: 1,
         opacity: 1,
+        y: 0,
         onComplete: done,
       })
     }
     const onLeave = (el:any, done:any) => {
       gsap.to(el, {
         //delay: 1.5, //duration between transitions
+        duration: .5,
         opacity: 0.5,
-        x: 1800,
+        x: 2800,
         onComplete: done
       })
     }

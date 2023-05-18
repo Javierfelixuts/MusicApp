@@ -8,3 +8,7 @@ export default defineConfig({
     host: true
   },
 })
+
+
+
+//git remote add origin https://github.com/Javierfelixuts/MusicApp.git
