@@ -1,9 +1,12 @@
 <template>
     <div id="main" :class="{ 'grid gridCols1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10': controls.isGrid }"
         class="main mb-12 mt-12 mb:mb-80">
-        <div v-for="song in musicList" @click="openSong(song, song.id)"
+        <div v-for="song in musicList"
             class="card bg-white m-3 p-2  flex justify-between items-center rounded-md shadow-lg">
-            <div class="header-detail flex">
+            <div 
+                @click="openSong(song, song.id)"
+                class="header-detail flex"
+            >
                 <img class="h-10"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRINNDU_NLAhLUoEohUZVKmeffls-BagE6xYw&usqp=CAU"
                     alt="icon music">
@@ -14,12 +17,10 @@
                 </div>
             </div>
             <div class="menu flex">
-                <icon-heart-face />
-                <div class="text-red-lighter">
-                    <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
-                    </svg>
-                </div>
+                <IconHeart 
+                    :songId="song.id"
+                    :isFavorite="song"/>
+                
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="rotate-90 w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
@@ -35,12 +36,12 @@ import { ref } from 'vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useControls } from '../stores/controls';
 import { Song } from '../types/MusicListType';
-import IconHeartFace from './icons/IconHeartFace.vue';
+import IconHeart from './icons/IconHeart.vue';
 
 export default {
     name: 'MusicPlayer',
     components:{
-        IconHeartFace
+        IconHeart
     },
     props: {
         musicList: {

@@ -18,8 +18,11 @@ export const useMusicList = defineStore('musicList', {
       });
       return musicFiltered;
     },
+    setMyFavoriteMusicList(id: number, isFavorite: boolean){
+      this.musicListState[id - 1].favorite = isFavorite
+    },
     getMyFavoriteMusicList(){
-      return this.musicListState.filter(song => song.favorite)
+      return this.musicListState.filter(song => song.favorite) 
     },
     getPopularMusicList(){
       return this.musicListState.filter(song => song.popular)

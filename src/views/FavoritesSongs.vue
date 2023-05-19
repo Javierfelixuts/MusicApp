@@ -2,6 +2,9 @@
     <div>
         <MusicList :musicList="musicList"/>
     </div>
+    <div v-if="musicList.length <= 0" class="text-center">
+      No favorite songs
+    </div>
 </template>
 
 <script lang="ts">
@@ -17,11 +20,7 @@ export default defineComponent({
   setup(){
     const music = useMusicList();
     const musicList = ref(music.getMyFavoriteMusicList())
-    music.$subscribe((mutation, state) => {
-            console.log("mutation ", mutation);
-            musicList.value = state.musicListState;
-            console.log("musicList: ", musicList.value)
-        })
+   
     return {
       musicList
     }

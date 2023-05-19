@@ -1,6 +1,6 @@
 <template>
     <svg 
-      @mouseover="makeHeart"
+      @click="makeHeart"
       xmlns="http://www.w3.org/2000/svg" 
       width="100" 
       height="100" 
@@ -41,7 +41,7 @@
         <g ref="openmouth">
           <path d="M30.8 54.7a18.7 18.7 0 0 0 37.4 0A22.8 22.8 0 0 0 68 52H31a11.8 11.8 0 0 0-.2 2.7z" transform="translate(10 10)" fill="#493f3c"/>
           <path d="M50 59l17.6.2a16.8 16.8 0 0 0 .6-4.5A22.8 22.8 0 0 0 68 52H31a11.8 11.8 0 0 0-.2 2.7 18.4 18.4 0 0 0 .4 4.1z" transform="translate(10 10)" fill="#fff"/>
-          <path d="M62 68.6a18 18 0 0 0-24.5.4 18.6 18.6 0 0 0 12 4.4A19 19 0 0 0 62 68.6z" transform="translate(10 10)" fill="#e54242"/>
+          <path d="M62 68.6a18 18 0 0 0-24.5.4 18.6 18.6 0 0 0 12 4.4A19 19 0 0 0 62 68.6z" transform="translate(100 10)" fill="#e54242"/>
           <path d="M49.5 74.8a20.2 20.2 0 0 1-20.1-20.1 15.2 15.2 0 0 1 .2-2.9l.2-1.2h39.4l.2 1.2c.1 1.1.2 2 .2 2.9a20.2 20.2 0 0 1-20.1 20.1zM32.2 53.4v1.3a17.3 17.3 0 0 0 34.6 0v-1.3z" transform="translate(10 10)" fill="#7f756b"/>
         </g>
       </g>
@@ -69,8 +69,8 @@
         tl.add('start')
         tl.fromTo(
           eyes.value,
-          0.1,
           {
+            duration: 0.1,
             scaleY: 1,
             transformOrigin: '50% 50%;'
           },
@@ -85,8 +85,8 @@
         )
         tl.fromTo(
           [blush.value, eyes.value],
-          0.3,
           {
+            duration: 0.3,
             y: 0
           },
           {
@@ -97,8 +97,8 @@
         )
         tl.fromTo(
           heartface.value,
-          0.3,
           {
+            duration: 0.3,
             opacity: 0
           },
           {
@@ -109,8 +109,8 @@
         )
         tl.from(
           openmouth.value,
-          0.2,
           {
+            duration: 0.3,
             scaleY: 0,
             ease: Sine.easeOut
           },
@@ -118,8 +118,8 @@
         )
         tl.from(
           hearteyes.value,
-          0.2,
           {
+            duration: 0.2,
             rotation: 10,
             repeat: 4,
             yoyo: true,
@@ -130,8 +130,8 @@
         )
         tl.to(
           heartface.value,
-          0.1,
           {
+            duration: 0.1,
             opacity: 0,
             ease: Sine.easeIn
           },
@@ -139,8 +139,8 @@
         )
         tl.fromTo(
             eyes.value,
-          0.1,
           {
+            duration: 0.1,
             scaleY: 1,
             transformOrigin: '50% 50%;'
           },
@@ -155,8 +155,8 @@
         )
         tl.to(
           [blush.value, eyes.value],
-          0.3,
           {
+            duration: 0.3,
             y: 0,
             ease: Sine.easeIn
           },
