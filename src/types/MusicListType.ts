@@ -4,4 +4,6 @@ export type Song = {
     songName: string;
     filePath: string;
     duration: number;
+    favorite: boolean,
+    popular: boolean
   }
