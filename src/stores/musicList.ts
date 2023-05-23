@@ -11,8 +11,9 @@ export const useMusicList = defineStore('musicList', {
   // state: () => ({ count: 0 })
   actions: {
     filterList(query: string) {
+
       const musicFiltered = this.musicListState.filter((song) => {
-        const songLowerCase = song.songName.toLocaleLowerCase();
+        const songLowerCase = song.description.toLocaleLowerCase();
         const songTextLowerCase = query.toLocaleLowerCase();
         return songLowerCase.includes(songTextLowerCase);
       });
