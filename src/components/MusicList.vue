@@ -32,7 +32,6 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useControls } from '../stores/controls';
 import { Song } from '../types/MusicListType';
