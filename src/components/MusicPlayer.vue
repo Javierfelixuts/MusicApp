@@ -74,8 +74,8 @@
                 </div>
                 <div class="mx-8 py-4">
                     <div class="flex justify-between text-sm text-grey-darker">
-                        <p id="currentime">0:00</p>
-                        <p id="durationSong">0.00</p>
+                        <p ref="currentTimeLabel" id="currentime">0:00</p>
+                        <p ref="durationSongLabel" id="durationSong">0.00</p>
                     </div>
                     <div class="mt-1">
                         <input
@@ -95,24 +95,27 @@
 </template>
 
 <script lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
+
 
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useMusicList } from '../stores/musicList';
 
-export default {
+export default defineComponent({
     name: 'MusicPlayer',
     setup() {
         const music = useMusicList();
         const player = useMusicPlayer();
         const progresBarPlayer = ref(0);
 
-        console.log("player: ", player);
+        //console.log("player: ", player); runtime-core.esm-bundler.js:40 [Vue warn]: The `compilerOptions` config option is only respected when using a build of Vue.js that includes the runtime compiler (aka "full build"). Since you are using the runtime-only build, `compilerOptions` must be passed to `@vue/compiler-dom` in the build setup instead.
         const audioPlayer =  ref<HTMLAudioElement | null>(null);
         const canPlay = ref(false);
         const canPause = ref(true);
         const currentSong  = ref();
         const currentSongId = ref(0);
+        const currentTimeLabel = ref<HTMLParagraphElement | null>(null);
+        const durationSongLabel = ref<HTMLParagraphElement | null>(null);
 
         const songUrl = ref(new URL(music.musicListState[currentSongId.value]?.filePath, import.meta.url).href);
         
@@ -131,10 +134,15 @@ export default {
             audioPlayer.value = new Audio(songUrl.value);
             audioPlayer.value.ontimeupdate = function(){
                 let duration = audioPlayer.value?.duration || 1;
+
                 let currentTime = audioPlayer.value?.currentTime || 1;
 
                 let percentage = (currentTime / duration) * 100;
-                progresBarPlayer.value = percentage
+                progresBarPlayer.value = percentage;
+                if(currentTimeLabel.value != null && durationSongLabel.value != null){
+                    currentTimeLabel.value.innerText = intToTime(Math.floor(currentTime)).toString();
+                    durationSongLabel.value.innerText = intToTime(Math.floor(duration)).toString();
+                }
             }
 
         });
@@ -212,21 +220,43 @@ export default {
             }
 
         }
+        function intToTime(int: number) {
+            // Obtener el número de horas
+            const hours = Math.floor(int / 3600);
+        
+            // Obtener el número de minutos
+            const minutes = Math.floor((int % 3600) / 60);
+        
+            // Obtener el número de segundos
+            const seconds = int % 60;
+        
+            // Devolver el tiempo en el formato HH:MM:SS
+            return `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+        }
+        function formatTime(number: number){
+            if(number < 10){
+                return '0' + number
+            }else{
+                return number
+            }
+        }
 
         return {
-            player,
             music,
+            player,
             canPlay,
             canPause,
+            currentTimeLabel,
+            durationSongLabel,
             progresBarPlayer,
             play,
             pause,
-            nextSong,
             preSong,
+            nextSong,
             changeProgresBarPlayer,
         }
     }
-}
+})
 </script>
 
 <style>
