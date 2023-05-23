@@ -1,14 +1,19 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // your compiler options here
+          // for example, to enable whitespace preservation:
+          whitespace: 'condense',
+        },
+      },
+    }),
+  ],
   server: {
-    host: true
+    host: true,
   },
-})
-
-
-
-//git remote add origin https://github.com/Javierfelixuts/MusicApp.git
+});
