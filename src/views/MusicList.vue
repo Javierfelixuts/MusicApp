@@ -16,13 +16,11 @@ import { useMusicList } from '../stores/musicList';
    },
    setup(){
     const music = useMusicList();
-    const musicList = ref(music.musicListState)
-    console.log("musicFavorites: ", music.getMyFavoriteMusicList());
+    const musicList = ref(music.musicListState);
+
     music.$subscribe((mutation, state) => {
-            console.log("mutation ", mutation);
-            musicList.value = state.musicListState;
-            console.log("musicList: ", musicList.value)
-        })
+      musicList.value = state.musicListState
+    })
     return {musicList}
    }
  });

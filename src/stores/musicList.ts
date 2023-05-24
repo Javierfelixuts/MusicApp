@@ -3,20 +3,23 @@ import { musicList } from '../resources/musicList';
 
 export const useMusicList = defineStore('musicList', {
   state: () => {
+    const musicCloneList = [...musicList];
     return { 
-      musicListState: musicList
+      musicListState: musicCloneList,
+      musicCloneList
      }
   },
   // could also be defined as
   // state: () => ({ count: 0 })
   actions: {
     filterList(query: string) {
-
-      const musicFiltered = this.musicListState.filter((song) => {
+      
+      const musicFiltered = this.musicCloneList.filter((song) => {
         const songLowerCase = song.description.toLocaleLowerCase();
         const songTextLowerCase = query.toLocaleLowerCase();
         return songLowerCase.includes(songTextLowerCase);
       });
+      this.musicListState = musicFiltered;
       return musicFiltered;
     },
     setMyFavoriteMusicList(id: number, isFavorite: boolean){

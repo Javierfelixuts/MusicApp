@@ -33,7 +33,7 @@
                     <div></div>
                 </router-link>
             </div>
-           
+
             <div>
                 <router-link to="/populares-songs">
                     <button> Populares</button>
@@ -58,36 +58,28 @@
             </label>
         </div>
     </header>
-    <Controls  />
+    <Controls />
 </template>
 
 <script lang="ts">
-import { ref, toRaw} from 'vue';
+import { ref, toRaw } from 'vue';
 import { useMusicList } from '../stores/musicList';
 import Controls from './Controls.vue';
+import { Song } from '../types/MusicListType';
 export default {
     name: 'Header',
-    components: {Controls},
+    components: { Controls },
     emits: ["openopenMenuBar"],
     setup() {
         const musicStore = useMusicList();
         const query = ref("");
-        const cloneMusicList = window.structuredClone(toRaw(musicStore.musicListState));
+        //const cloneMusicList = window.structuredClone(toRaw(musicStore.musicListState));
 
         const openMenuBar = () => {
             alert("open menu");
         }
         const searchSongHandler = (query: string) => {
-            
-            const musicFilter = musicStore.filterList(query);
-            console.log("musicListFilter: ", musicFilter)
-
-            if(query.length <= 0) {
-                musicStore.$patch({musicListState:cloneMusicList})
-            }else{
-                musicStore.$patch({musicListState:musicFilter})
-            }
-            
+            musicStore.filterList(query);
         }
 
         return {
@@ -108,7 +100,8 @@ header {
     border-bottom-left-radius: 14%;
     border-bottom-right-radius: 14%;
 }
-a.router-link-active > div{
+
+a.router-link-active>div {
     width: 100%;
     height: 1px;
     background-color: rgb(242, 255, 240);

@@ -20,6 +20,10 @@ export default defineComponent({
   setup(){
     const music = useMusicList();
     const musicList = ref(music.getMyFavoriteMusicList())
+
+    music.$subscribe((mutation, state) => {
+            musicList.value = state.musicListState
+    })
    
     return {
       musicList
