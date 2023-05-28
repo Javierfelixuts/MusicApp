@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="flex justify-between items-center mt-2">
-                            <div onclick="randomSong()" class="text-grey-darker cursor-pointer">
+                            <div @click="randomSong()" class="text-grey-darker cursor-pointer">
                                 <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path
@@ -62,7 +62,7 @@
                                     <path d="M13 5h3v10h-3V5zM4 5l9 5-9 5V5z" />
                                 </svg>
                             </div>
-                            <div id="loop_song" onclick="loop()" class="text-slate-900 p-2">
+                            <div id="loop_song" @click="loopSong()" class="text-slate-900 p-2">
                                 <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path
@@ -116,6 +116,8 @@ export default defineComponent({
         const currentSongId = ref(0);
         const currentTimeLabel = ref<HTMLParagraphElement | null>(null);
         const durationSongLabel = ref<HTMLParagraphElement | null>(null);
+        const loop = ref(false);
+
 
         const songUrl = ref(new URL(music.musicListState[currentSongId.value]?.filePath, import.meta.url).href);
         
@@ -175,7 +177,12 @@ export default defineComponent({
 
             // persist the whole state to the local storage whenever it changes
             //localStorage.setItem('cart', JSON.stringify(state))
-        })
+        });
+
+        function randomSong(){
+            const randomIndex = Math.floor(Math.random() * music.musicListState.length);
+            songUrl.value = new URL(music.musicListState[randomIndex]?.filePath, import.meta.url).href
+        }
 
         const pause = () => {
             canPlay.value = true;
@@ -190,6 +197,13 @@ export default defineComponent({
             //console.log(audio.src);
             console.log("play");
             audioPlayer.value?.play();
+        }
+        const loopSong = () => { 
+            loop.value = !loop.value
+            if(audioPlayer.value?.loop != null){
+                audioPlayer.value.loop = loop.value;
+
+            }
         }
 
         const nextSong = () => {
@@ -208,10 +222,15 @@ export default defineComponent({
         }
         const preSong = () => {
             currentSong.value.id =  currentSong.value.id - 1;
+            if(currentSong.value.id < 0){
+                currentSong.value.id = music.musicListState.length - 1
+            }
             player.$patch({
                 isOpen: true,
                 id: currentSong.value.id
             });
+            
+            console.log("currentSong: ", currentSong.value.id)
             
             songUrl.value =  new URL(music.musicListState[currentSong.value.id]?.filePath, import.meta.url).href
             if(audioPlayer.value !== null){
@@ -252,7 +271,9 @@ export default defineComponent({
             play,
             pause,
             preSong,
+            loopSong,
             nextSong,
+            randomSong,
             changeProgresBarPlayer,
         }
     }
