@@ -1,7 +1,6 @@
 <template>
     <div>
         <MusicList :musicList="musicList"/>
-
     </div>
 </template>
 <script lang="ts">
@@ -18,7 +17,8 @@ export default defineComponent({
         const music = useMusicList();
         const musicList = ref(music.getPopularMusicList());
         music.$subscribe((mutation, state) => {
-            musicList.value = state.musicListState
+            console.log("mutation: ", mutation);
+            musicList.value = state.musicPopularSongs
         })
         return {
             musicList

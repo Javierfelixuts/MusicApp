@@ -3,13 +3,15 @@ import PopularesSongs from '../views/PopularesSongs.vue';
 import MusicList from '../views/MusicList.vue';
 import FavoritesSongs from '../views/FavoritesSongs.vue';
 import { ref } from 'vue';
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 
 const nameRoute = ref("");
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: '/', component: MusicList, meta:
+            path: '/', component: MusicList, 
+            meta:
             {
                 nameRoute: nameRoute.value,
                 enterClass: "animate__animated animate__bounceInLeft",
@@ -33,6 +35,8 @@ const router = createRouter({
         },
     ],
 })
+
+
 
 /* router.beforeEach((to, from, next) => {
     nameRoute.value = from.fullPath;

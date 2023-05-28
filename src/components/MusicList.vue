@@ -11,7 +11,7 @@
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRINNDU_NLAhLUoEohUZVKmeffls-BagE6xYw&usqp=CAU"
                     alt="icon music">
                 <div class="ml-5">
-                    <p class="title text-md text-cyan-700 break-all">{{ song.songName }}</p>
+                    <p class="title text-md text-cyan-700 break-all" :style="{'color': colorHeader}">{{ song.songName }}</p>
                     <p class="description text-xs text-slate-400 break-all">{{ song.artist }}</p>
                     <p class="description text-xs text-slate-400 break-all">{{ intToTime(song.duration) }}</p>
                 </div>
@@ -32,10 +32,12 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useControls } from '../stores/controls';
 import { Song } from '../types/MusicListType';
 import IconHeart from './icons/IconHeart.vue';
+import { useChangeHeaderColor } from '../stores/changeHeaderColor';
 
 export default {
     name: 'MusicPlayer',
@@ -52,9 +54,15 @@ export default {
     setup(props) {
         const player = useMusicPlayer();
         const controls = useControls();
+        const useChangeColor = useChangeHeaderColor();
+
+        const colorHeader = ref(localStorage.getItem("currentColor") || '');
 
         controls.$subscribe((mutation, state) => {
             console.log("controls: ", { mutation, state })
+        })
+        useChangeColor.$subscribe((mutation, state) => {
+            colorHeader.value = state.currentColor;
         })
 
 
@@ -87,6 +95,7 @@ export default {
 
         return {
             controls,
+            colorHeader,
             openSong,
             intToTime,
         }

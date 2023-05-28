@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-gradient-to-b from-indigo-600 to-blue-500 mb-6"> <!-- fixed top-0 z-40 -->
+    <header class="bg-blue-500 mb-6" :style="{'background-color': colorHeader}"> <!-- fixed top-0 z-40 -->
         <div class="text-white flex justify-between">
             <div class="flex">
                 <div>
@@ -12,7 +12,8 @@
                 </div>
                 <div class="ml-3">Music App</div>
             </div>
-            <div class="bg-red-500" @click="openMenuBar()">
+            <MenuBar v-if="isMenuOpen"/>
+            <div @click="openMenuBar">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5">
@@ -65,25 +66,37 @@
 import { ref, toRaw } from 'vue';
 import { useMusicList } from '../stores/musicList';
 import Controls from './Controls.vue';
-import { Song } from '../types/MusicListType';
+import MenuBar from './MenuBar.vue';
+import { useChangeHeaderColor } from '../stores/changeHeaderColor';
+
 export default {
     name: 'Header',
-    components: { Controls },
-    emits: ["openopenMenuBar"],
+    components: { Controls, MenuBar },
+    emits: ["openMenuBar"],
     setup() {
+        const useChangeColor = useChangeHeaderColor();
         const musicStore = useMusicList();
         const query = ref("");
+        const colorHeader = ref(localStorage.getItem("currentColor") || "" );
+        console.log("colorHeader: ", colorHeader.value);
+        const isMenuOpen = ref(false);
         //const cloneMusicList = window.structuredClone(toRaw(musicStore.musicListState));
-
+        useChangeColor.$subscribe((mutation, state) => {
+            colorHeader.value = state.currentColor;
+        })
         const openMenuBar = () => {
-            alert("open menu");
+            isMenuOpen.value = !isMenuOpen.value;
         }
         const searchSongHandler = (query: string) => {
             musicStore.filterList(query);
         }
 
+        console.log("colorHeader 2: ", colorHeader.value);
+
         return {
+            colorHeader,
             query,
+            isMenuOpen,
             openMenuBar,
             searchSongHandler
         }

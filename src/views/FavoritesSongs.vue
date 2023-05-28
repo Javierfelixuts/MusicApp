@@ -22,7 +22,7 @@ export default defineComponent({
     const musicList = ref(music.getMyFavoriteMusicList())
 
     music.$subscribe((mutation, state) => {
-            musicList.value = state.musicListState
+            musicList.value = state.musicFavoriteSongs
     })
    
     return {

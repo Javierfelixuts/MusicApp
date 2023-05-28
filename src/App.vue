@@ -2,8 +2,10 @@
   <router-view v-slot="{ Component, route }">
     <Header />
     <MusicPlayer />
-    <Transition :enter-active-class="route.meta.enterClass + ''" :leave-active-class="route.meta.leaveClass + ''">
-      <div :key="route.fullPath" class="absolute w-full">
+    <Transition 
+      :enter-active-class="route.meta.enterClass + ''" 
+      :leave-active-class="route.meta.leaveClass + ''">
+      <div :key="route.fullPath" class="absolute w-full x " :class="route.meta.from">
         <component :is="Component" :key="route.path" />
       </div>
     </Transition>
@@ -12,6 +14,8 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue';
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import Header from './components/Header.vue';
 import MusicPlayer from './components/MusicPlayer.vue';
 export default {
@@ -22,6 +26,5 @@ export default {
   setup() {
     return {}
   }
-
 }
 </script>

@@ -69,5 +69,25 @@ export const musicList = [
         duration: 10,
         favorite: false,
         popular: false,
+   },
+    {
+        id: 7,
+        artist: 'Oliver Tree',
+        songName: 'Miss You Music Video',
+        description: 'Oliver Tree  Robin Schulz  Miss You Music Video.mp3',
+        filePath: '../music/Oliver_Tree_Robin_Schulz _Miss_You_Music_Video.mp3',
+        duration: 168,
+        favorite: false,
+        popular: true,
+   },
+    {
+        id: 8,
+        artist: 'Luminati Suns',
+        songName: 'My Stupid Heart - Walk off the Earth',
+        description: 'My Stupid Heart - Walk off the Earth (Ft. Luminati Suns) Official Video',
+        filePath: '../music/My_Stupid_Heart_Walk _off_the_Earth_(Ft. Luminati Suns)_Official_Video.mp3',
+        duration: 172,
+        favorite: false,
+        popular: true,
    }
 ];
