@@ -159,6 +159,7 @@ export default defineComponent({
             songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href
             
             if(audioPlayer.value !== null){
+                audioPlayer.value.pause();
                 audioPlayer.value.src = songUrl.value;
                 audioPlayer.value.play();
             }
@@ -208,13 +209,18 @@ export default defineComponent({
 
         const nextSong = () => {
             currentSong.value.id =  currentSong.value.id + 1;
-
+            if(currentSong.value.id > music.musicListState.length - 1){
+                currentSong.value.id = 0    
+            }
             player.$patch({
                 isOpen: true,
                 id: currentSong.value.id,
             });
             songUrl.value =  new URL(music.musicListState[currentSong.value.id]?.filePath, import.meta.url).href
             if(audioPlayer.value !== null){
+
+
+                audioPlayer.value.pause();
                 audioPlayer.value.src = songUrl.value;
                 audioPlayer.value.play();
             }
@@ -231,9 +237,9 @@ export default defineComponent({
             });
             
             console.log("currentSong: ", currentSong.value.id)
-            
             songUrl.value =  new URL(music.musicListState[currentSong.value.id]?.filePath, import.meta.url).href
             if(audioPlayer.value !== null){
+                audioPlayer.value.pause();
                 audioPlayer.value.src = songUrl.value;
                 audioPlayer.value.play();
             }
