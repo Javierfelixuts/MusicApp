@@ -23,6 +23,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useMusicList } from '../../stores/musicList';
+import { useChangeHeaderColor } from '../../stores/changeHeaderColor';
 
 export default defineComponent({
     name: "IconHeart",
@@ -38,22 +39,33 @@ export default defineComponent({
     },
     setup(props) {
         const music = useMusicList();
+        const useChangeColor = useChangeHeaderColor();
+
+        const colorHeader = ref("#ff8888")
+        if(localStorage.getItem("currentColor")){
+            colorHeader.value = localStorage.getItem("currentColor") || '';
+        }
+        useChangeColor.$subscribe((mutation, state) => {
+            colorHeader.value = state.currentColor;
+            if(fillIcon.value !== "none"){
+                fillIcon.value = state.currentColor;
+            }
+        })
 
         const fillIcon = ref("none");
         if(props.isFavorite.favorite){
-            fillIcon.value = "#000000"
+            fillIcon.value = colorHeader.value
         }
         const fillHeart = () => {
             
             if(fillIcon.value == "none"){
-                fillIcon.value = "#000000"
-                music.setMyFavoriteMusicList(props.songId + 1, true)
+                fillIcon.value = colorHeader.value
+                music.setMyFavoriteMusicList(props.songId, true)
             }
             else{
                 fillIcon.value = "none"
-                music.setMyFavoriteMusicList(props.songId + 1, false)
+                music.setMyFavoriteMusicList(props.songId, false)
             }
-            console.log("hey")
         }
         return {
             fillIcon,

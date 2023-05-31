@@ -18,11 +18,8 @@
                                 }}</p>
                             </div>
                             <div class="text-red-lighter">
-                                <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20">
-                                    <path
-                                        d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
-                                </svg>
+                                {{ currentSongId }}
+                                <IconHeart />
                             </div>
                         </div>
                         <div class="flex justify-between items-center mt-2">
@@ -97,14 +94,18 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
 
-
+import IconHeart from './icons/IconHeart.vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useMusicList } from '../stores/musicList';
 
 export default defineComponent({
     name: 'MusicPlayer',
+    components: {
+        IconHeart
+    },
     setup() {
         const music = useMusicList();
+
         const player = useMusicPlayer();
         const progresBarPlayer = ref(0);
 
@@ -116,6 +117,7 @@ export default defineComponent({
         const currentSongId = ref(0);
         const currentTimeLabel = ref<HTMLParagraphElement | null>(null);
         const durationSongLabel = ref<HTMLParagraphElement | null>(null);
+        const isFavorite = ref({favorite: false});
         const loop = ref(false);
 
 
@@ -133,6 +135,8 @@ export default defineComponent({
             }
         }
         onMounted(() => {
+            
+
             audioPlayer.value = new Audio(songUrl.value);
             audioPlayer.value.ontimeupdate = function(){
                 let duration = audioPlayer.value?.duration || 1;
@@ -155,8 +159,10 @@ export default defineComponent({
 
         player.$subscribe((mutation, state) => {
             canPause.value = true;
-            console.log("mutation: ", { mutation, state });
-            songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href
+            songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href;
+
+            currentSongId.value  = state.id;
+            const id = music.getMyFavoriteMusicList()[state.id]?.favorite;
             
             if(audioPlayer.value !== null){
                 audioPlayer.value.pause();
@@ -270,6 +276,7 @@ export default defineComponent({
             music,
             player,
             canPlay,
+            currentSongId,
             canPause,
             currentTimeLabel,
             durationSongLabel,
