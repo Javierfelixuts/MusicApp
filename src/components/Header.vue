@@ -12,14 +12,14 @@
                 </div>
                 <div class="ml-3">Music App</div>
             </div>
-            <MenuBar v-if="isMenuOpen"/>
-            <div @click="openMenuBar">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5">
-                    </path>
-                </svg>
+            <div class="z-20" @click="openMenuBar">
+                <IconBurger />
             </div>
+            <Transition
+                enter-active-class="animate__animated animate__bounceInRight"
+                leave-active-class="animate__animated animate__bounceOutRight">
+                <MenuBar ref="rightBar" v-if="isMenuOpen"/>
+            </Transition>
         </div>
         <div class="text-white mt-5 text-xs flex justify-around">
             <div>
@@ -63,26 +63,31 @@
 </template>
 
 <script lang="ts">
-import { ref, toRaw } from 'vue';
+import { gsap } from 'gsap';
+import { onMounted, ref, toRaw } from 'vue';
 import { useMusicList } from '../stores/musicList';
 import Controls from './Controls.vue';
 import MenuBar from './MenuBar.vue';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
+import IconBurger from './icons/IconBurger.vue';
 
 export default {
     name: 'Header',
-    components: { Controls, MenuBar },
+    components: { Controls, MenuBar, IconBurger },
     emits: ["openMenuBar"],
     setup() {
         const useChangeColor = useChangeHeaderColor();
         const musicStore = useMusicList();
         const query = ref("");
         const colorHeader = ref(localStorage.getItem("currentColor") || "" );
-        console.log("colorHeader: ", colorHeader.value);
         const isMenuOpen = ref(false);
+        const rightBar = ref(null);
         //const cloneMusicList = window.structuredClone(toRaw(musicStore.musicListState));
         useChangeColor.$subscribe((mutation, state) => {
             colorHeader.value = state.currentColor;
+        })
+        onMounted(() => {
+            gsap.to(document.getElementById("menuRight"), { duration: 1,  x: 2000 })
         })
         const openMenuBar = () => {
             isMenuOpen.value = !isMenuOpen.value;
@@ -91,12 +96,11 @@ export default {
             musicStore.filterList(query);
         }
 
-        console.log("colorHeader 2: ", colorHeader.value);
-
         return {
             colorHeader,
             query,
             isMenuOpen,
+            rightBar,
             openMenuBar,
             searchSongHandler
         }
