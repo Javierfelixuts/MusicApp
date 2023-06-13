@@ -59,7 +59,7 @@
                                     <path d="M13 5h3v10h-3V5zM4 5l9 5-9 5V5z" />
                                 </svg>
                             </div>
-                            <div id="loop_song" @click="loopSong()" class="text-slate-900 p-2">
+                            <div id="loop_song" @click="loopSong()" :style="colorStorage" class="text-slate-900 p-2">
                                 <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path
@@ -92,11 +92,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
+import { defineComponent, onMounted, onUnmounted, reactive, ref } from 'vue';
 
 import IconHeart from './icons/IconHeart.vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useMusicList } from '../stores/musicList';
+import { useChangeHeaderColor } from '../stores/changeHeaderColor';
 
 export default defineComponent({
     name: 'MusicPlayer',
@@ -120,6 +121,9 @@ export default defineComponent({
         const isFavorite = ref({favorite: false});
         const loop = ref(false);
 
+        const colorStorage = reactive({backgroundColor: 'initial', color: 'black'})
+
+        const useChangeColor = useChangeHeaderColor();
 
         const songUrl = ref(new URL(music.musicListState[currentSongId.value]?.filePath, import.meta.url).href);
         
@@ -156,6 +160,15 @@ export default defineComponent({
         onUnmounted(() => {
             audioPlayer.value?.pause();
         });
+
+        useChangeColor.$subscribe((mutation, state) => {
+            console.log("state: ", state);
+            if(audioPlayer.value != null){
+                if(audioPlayer.value.loop){
+                    colorStorage.backgroundColor = state.currentColor;
+                }
+            }
+        })
 
         player.$subscribe((mutation, state) => {
             canPause.value = true;
@@ -209,8 +222,24 @@ export default defineComponent({
             loop.value = !loop.value
             if(audioPlayer.value?.loop != null){
                 audioPlayer.value.loop = loop.value;
-
+                console.log("audioPlayer: ", audioPlayer.value?.loop)
+                setColor(loop.value)
             }
+        }
+        function setColor(putColor = false){
+            if(putColor){
+                console.log("localStorage.getItem(currentColor) != null: ", localStorage.getItem("currentColor") != null)
+                if(localStorage.getItem("currentColor") != null){
+                    let color = localStorage.getItem("currentColor") || '';
+                    colorStorage.backgroundColor = color;
+                    colorStorage.color = 'white';
+                    console.log("colorStorage: ", colorStorage)
+                }   
+            }else{
+                colorStorage.backgroundColor = 'initial';
+                colorStorage.color = 'black';
+            }
+            
         }
 
         const nextSong = () => {
@@ -281,6 +310,7 @@ export default defineComponent({
             currentTimeLabel,
             durationSongLabel,
             progresBarPlayer,
+            colorStorage,
             play,
             pause,
             preSong,

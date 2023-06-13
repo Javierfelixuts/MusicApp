@@ -1,7 +1,7 @@
 <template>
     <svg
     @click="fillHeart" 
-        width="7mm" height="7mm" viewBox="0 0 23.962452 21.528046" version="1.1" id="svg5"
+        width="8mm" height="8mm" viewBox="0 0 23.962452 21.528046" version="1.1" id="svg5"
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
         xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
         xmlns:svg="http://www.w3.org/2000/svg">
