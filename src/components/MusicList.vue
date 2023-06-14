@@ -18,6 +18,7 @@
             </div>
             <div class="menu flex">
                 <IconHeart 
+                    :key="render"
                     :songId="song.id"
                     :isFavorite="song"/>
                 
@@ -34,6 +35,7 @@
 <script lang="ts">
 import { ref } from 'vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
+import { useMusicList } from '../stores/musicList';
 import { useControls } from '../stores/controls';
 import { Song } from '../types/MusicListType';
 import IconHeart from './icons/IconHeart.vue';
@@ -52,7 +54,9 @@ export default {
         }
     },
     setup(props) {
+        const render = ref(false);
         const player = useMusicPlayer();
+        const music = useMusicList();
         const controls = useControls();
         const useChangeColor = useChangeHeaderColor();
 
@@ -63,6 +67,9 @@ export default {
         })
         useChangeColor.$subscribe((mutation, state) => {
             colorHeader.value = state.currentColor;
+        })
+        music.$subscribe((mutation, state) => {
+            render.value = music.getOneOfMyFavoriteSongs(player.id);
         })
 
 
@@ -94,6 +101,7 @@ export default {
         }
 
         return {
+            render,
             controls,
             colorHeader,
             openSong,

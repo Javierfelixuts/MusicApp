@@ -18,8 +18,11 @@
                                 }}</p>
                             </div>
                             <div class="text-red-lighter">
-                                {{ currentSongId }}
-                                <IconHeart />
+                                <IconHeart 
+                                :key="render"
+                                :songId="currentSongId"
+                                :isFavorite="music.musicListState[player.id]"
+                                />
                             </div>
                         </div>
                         <div class="flex justify-between items-center mt-2">
@@ -105,8 +108,8 @@ export default defineComponent({
         IconHeart
     },
     setup() {
+        const render = ref(false);
         const music = useMusicList();
-
         const player = useMusicPlayer();
         const progresBarPlayer = ref(0);
 
@@ -118,7 +121,6 @@ export default defineComponent({
         const currentSongId = ref(0);
         const currentTimeLabel = ref<HTMLParagraphElement | null>(null);
         const durationSongLabel = ref<HTMLParagraphElement | null>(null);
-        const isFavorite = ref({favorite: false});
         const loop = ref(false);
 
         const colorStorage = reactive({backgroundColor: 'initial', color: 'black'})
@@ -139,8 +141,6 @@ export default defineComponent({
             }
         }
         onMounted(() => {
-            
-
             audioPlayer.value = new Audio(songUrl.value);
             audioPlayer.value.ontimeupdate = function(){
                 let duration = audioPlayer.value?.duration || 1;
@@ -162,12 +162,15 @@ export default defineComponent({
         });
 
         useChangeColor.$subscribe((mutation, state) => {
-            console.log("state: ", state);
             if(audioPlayer.value != null){
                 if(audioPlayer.value.loop){
                     colorStorage.backgroundColor = state.currentColor;
                 }
             }
+        })
+        music.$subscribe((mutation, state) => {
+            //Rerender del icono heart
+            render.value = music.getOneOfMyFavoriteSongs(player.id);
         })
 
         player.$subscribe((mutation, state) => {
@@ -175,8 +178,7 @@ export default defineComponent({
             songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href;
 
             currentSongId.value  = state.id;
-            const id = music.getMyFavoriteMusicList()[state.id]?.favorite;
-            
+            music.setMyFavoriteMusicList(currentSongId.value, render.value)
             if(audioPlayer.value !== null){
                 audioPlayer.value.pause();
                 audioPlayer.value.src = songUrl.value;
@@ -213,27 +215,22 @@ export default defineComponent({
         const play = () => {
             canPause.value = true;
             canPlay.value = false;
-
             //console.log(audio.src);
-            console.log("play");
             audioPlayer.value?.play();
         }
         const loopSong = () => { 
             loop.value = !loop.value
             if(audioPlayer.value?.loop != null){
                 audioPlayer.value.loop = loop.value;
-                console.log("audioPlayer: ", audioPlayer.value?.loop)
                 setColor(loop.value)
             }
         }
         function setColor(putColor = false){
             if(putColor){
-                console.log("localStorage.getItem(currentColor) != null: ", localStorage.getItem("currentColor") != null)
                 if(localStorage.getItem("currentColor") != null){
                     let color = localStorage.getItem("currentColor") || '';
                     colorStorage.backgroundColor = color;
                     colorStorage.color = 'white';
-                    console.log("colorStorage: ", colorStorage)
                 }   
             }else{
                 colorStorage.backgroundColor = 'initial';
@@ -271,7 +268,6 @@ export default defineComponent({
                 id: currentSong.value.id
             });
             
-            console.log("currentSong: ", currentSong.value.id)
             songUrl.value =  new URL(music.musicListState[currentSong.value.id]?.filePath, import.meta.url).href
             if(audioPlayer.value !== null){
                 audioPlayer.value.pause();
@@ -301,6 +297,8 @@ export default defineComponent({
             }
         }
 
+        
+
         return {
             music,
             player,
@@ -311,6 +309,7 @@ export default defineComponent({
             durationSongLabel,
             progresBarPlayer,
             colorStorage,
+            render,
             play,
             pause,
             preSong,

@@ -47,6 +47,9 @@ export const useMusicList = defineStore('musicList', {
 
       console.log("this.musicCloneList: ", this.musicCloneList)
     },
+    getOneOfMyFavoriteSongs(id: number){
+      return this.musicCloneList[id].favorite;
+    },
     getMyFavoriteMusicList(){
       return this.musicCloneList.filter(song => song.favorite) 
     },
