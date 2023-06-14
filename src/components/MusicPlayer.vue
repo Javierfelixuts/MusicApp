@@ -178,7 +178,9 @@ export default defineComponent({
             songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href;
 
             currentSongId.value  = state.id;
-            music.setMyFavoriteMusicList(currentSongId.value, render.value)
+            //const isMyFavoriteSong = music.getOneOfMyFavoriteSongs(currentSongId.value);
+
+            //music.setMyFavoriteMusicList(currentSongId.value, isMyFavoriteSong)
             if(audioPlayer.value !== null){
                 audioPlayer.value.pause();
                 audioPlayer.value.src = songUrl.value;
