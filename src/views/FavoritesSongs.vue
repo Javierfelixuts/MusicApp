@@ -21,10 +21,10 @@ export default defineComponent({
     const music = useMusicList();
     const musicList = ref(music.getMyFavoriteMusicList())
 
-    music.$subscribe((mutation, state) => {
+    /* music.$subscribe((mutation, state) => {
       console.log("state: ", state);
             musicList.value = state.musicFavoriteSongs
-    })
+    }) */
    
     return {
       musicList

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "epic-spinners": "^2.0.0",
     "gsap": "^3.11.5",
     "pinia": "^2.0.29",
     "vue": "^3.2.45",

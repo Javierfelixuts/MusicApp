@@ -6,6 +6,7 @@ export const useMusicList = defineStore('musicList', {
     const musicCloneList = [...musicList];
     const musicPopularSongsInitial = musicCloneList.filter(song => song.popular);
     const musicFavoriteSongsInitial = musicCloneList.filter(song => song.favorite);
+    const idFavorite = 0;
     return { 
       musicListState: musicCloneList,
       musicCloneList,
@@ -13,6 +14,7 @@ export const useMusicList = defineStore('musicList', {
       musicPopularSongsInitial,
       musicFavoriteSongs: musicFavoriteSongsInitial,
       musicFavoriteSongsInitial,
+      idFavorite,
      }
   },
   // could also be defined as
@@ -41,11 +43,12 @@ export const useMusicList = defineStore('musicList', {
       this.musicFavoriteSongs = musicFilteredFavorites;
       return musicFiltered;
     },
+    getIdFromMyFavoriteSong(){
+      return this.idFavorite;
+    },
     setMyFavoriteMusicList(id: number, isFavorite: boolean){
-      console.log("id: ", id);
+      this.idFavorite = id;
       this.musicCloneList[id].favorite = isFavorite;
-
-      console.log("this.musicCloneList: ", this.musicCloneList)
     },
     getOneOfMyFavoriteSongs(id: number){
       return this.musicCloneList[id].favorite;

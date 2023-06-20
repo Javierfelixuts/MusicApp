@@ -108,7 +108,7 @@ export default defineComponent({
         IconHeart
     },
     setup() {
-        const render = ref(false);
+        const render = ref(0);
         const music = useMusicList();
         const player = useMusicPlayer();
         const progresBarPlayer = ref(0);
@@ -169,8 +169,14 @@ export default defineComponent({
             }
         })
         music.$subscribe((mutation, state) => {
+            console.log("playerud: ", state);
             //Rerender del icono heart
-            render.value = music.getOneOfMyFavoriteSongs(player.id);
+            console.log("getIdFromMyFavoriteSong:_ID ", music.getIdFromMyFavoriteSong());
+            if(music.getOneOfMyFavoriteSongs(music.getIdFromMyFavoriteSong())){
+                render.value = 1;
+            }else{
+                render.value = 2;
+            }
         })
 
         player.$subscribe((mutation, state) => {

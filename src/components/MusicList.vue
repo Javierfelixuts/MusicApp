@@ -54,7 +54,7 @@ export default {
         }
     },
     setup(props) {
-        const render = ref(false);
+        const render = ref(0);
         const player = useMusicPlayer();
         const music = useMusicList();
         const controls = useControls();
@@ -69,7 +69,12 @@ export default {
             colorHeader.value = state.currentColor;
         })
         music.$subscribe((mutation, state) => {
-            render.value = music.getOneOfMyFavoriteSongs(player.id);
+            if(music.getOneOfMyFavoriteSongs(player.id)){
+                render.value = 1;
+            }else{
+                render.value = 2;
+            }
+            //render.value = music.getOneOfMyFavoriteSongs(player.id);
         })
 
 
