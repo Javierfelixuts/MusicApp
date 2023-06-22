@@ -1,5 +1,6 @@
 <template>
     <svg
+    class="cursor-pointer hover:drop-shadow-lg"
     @click="fillHeart" 
         width="8mm" height="8mm" viewBox="0 0 23.962452 21.528046" version="1.1" id="svg5"
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"

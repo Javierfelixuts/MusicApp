@@ -1,7 +1,9 @@
 <template>
-    <div class="w-full bg-red-500 h-40 flex items-center justify-around flex-col text-white">
-        <div>
-            
+    <div class="w-full bg-red-500 h-40 flex items-center justify-around flex-col text-white" :style="{'background-color': colorHeader}">
+        <div 
+            class="ml-12 self-start cursor-pointer"
+            @click="goBack">
+            <BackArrowPage  />
         </div>
         <div>
             <h1 class="text-xl">Music App</h1>
@@ -10,12 +12,15 @@
     </div>
     <div class="text-center -mt-5">
         <input v-model="inputUrlYT" class="focus:outline-none focus:ring focus:ring-violet-300 w-11/12 md:6/12 p-2 rounded-md border border-indigo-500" 
-        type="text" placeholder="http://">
+        type="text" placeholder="https://www.youtube.com/watch?v=cip0cudMOeI">
     </div>
     <div class="text-center mt-5">
         <button
         @click="sendToApi" 
-        class="text-white rounded w-5/12 md:6/12 bg-red-500 p-3 hover:bg-red-700">Enviar</button>
+        :style="{'background-color': colorHeader}"
+        class="text-white rounded w-5/12 md:6/12 bg-red-500 p-3 hover:bg-red-700"
+        
+        >Enviar</button>
     </div>
 
     <div
@@ -27,25 +32,40 @@
         class="text-center"
         :animation-duration="1000"
         :size="160"
-        :color="'#ff1d5e'"
+        :color="colorHeader"
         />
     </div>
 
 </template>
 <script lang="ts">
-import {AtomSpinner} from 'epic-spinners'
-import { ref } from 'vue';
+import {AtomSpinner} from 'epic-spinners';
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import BackArrowPage from '../components/icons/BackArrowPage.vue';
+import { useChangeHeaderColor } from '../stores/changeHeaderColor';
+import { useMusicPlayer } from '../stores/musicPlayer';
+
 export default {
     name: 'UploadUrlYouTube',
     components: {
-      AtomSpinner
+      AtomSpinner,
+      BackArrowPage
     },
     setup(){
+        const useChangeColor = useChangeHeaderColor();
+        const router = useRouter();
         const inputUrlYT = ref("");
         const isLoading = ref(false);
+        const colorHeader = ref(localStorage.getItem("currentColor") || "" );
 
-        
-
+        onMounted(() => {
+            useMusicPlayer().$patch({
+                isOpen: false
+            })
+        })
+        useChangeColor.$subscribe((mutation, state) => {
+            colorHeader.value = state.currentColor;
+        })
         const sendToApi = () => {
             if(inputUrlYT.value == ""){
                 alert("el texto no puede estar vacío");
@@ -56,9 +76,14 @@ export default {
                 isLoading.value = !isLoading.value;
             }, 4000);
         }
+        const goBack = () => {
+            router.go(-1);
+        }
         return {
             isLoading,
             inputUrlYT,
+            colorHeader,
+            goBack,
             sendToApi
         }
     }

@@ -40,14 +40,16 @@
                                 </svg>
                             </div>
                             <div @click="pause" v-if="!canPlay" id="pause_song"
-                                class="text-white p-4 rounded-full bg-rose-500 shadow-lg cursor-pointer">
+                                class="text-white p-4 rounded-full bg-rose-500 shadow-lg cursor-pointer"
+                               :style="{'background-color': colorHeader}">
                                 <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path d="M5 4h3v12H5V4zm7 0h3v12h-3V4z" />
                                 </svg>
                             </div>
                             <div @click="play" v-if="!canPause" id="play_song"
-                                class="text-white p-4 rounded-full bg-rose-500 shadow-lg cursor-pointer">
+                                class="text-white p-4 rounded-full bg-rose-500 shadow-lg cursor-pointer"
+                               :style="{'background-color': colorHeader}">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="w-8 h-8">
                                     <path fill-rule="evenodd"
@@ -62,7 +64,7 @@
                                     <path d="M13 5h3v10h-3V5zM4 5l9 5-9 5V5z" />
                                 </svg>
                             </div>
-                            <div id="loop_song" @click="loopSong()" :style="colorStorage" class="text-slate-900 p-2">
+                            <div id="loop_song" @click="loopSong()" :style="colorStorage" class="text-slate-900 p-2 rounded">
                                 <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path
@@ -80,8 +82,10 @@
                     <div class="mt-1">
                         <input
                         @change="changeProgresBarPlayer"
-                         class="w-full" type="range" min="0" max="100" 
-                         :value="progresBarPlayer" id="progressBar" />
+                        class="w-full in-range:border-green-500" type="range" min="0" max="100" 
+                        :value="progresBarPlayer" id="progressBar"
+                        
+                         />
 
                         <!-- <div id="containerTimeline" class="flex items-center h-1 bg-grey-dark rounded-full">
                           <div id="timeline" class="w-0 h-1 bg-red-500 rounded-l-lg  relative" style="width: 100%;"></div>
@@ -124,7 +128,7 @@ export default defineComponent({
         const loop = ref(false);
 
         const colorStorage = reactive({backgroundColor: 'initial', color: 'black'})
-
+        const colorHeader = ref(localStorage.getItem("currentColor") || '');
         const useChangeColor = useChangeHeaderColor();
 
         const songUrl = ref(new URL(music.musicListState[currentSongId.value]?.filePath, import.meta.url).href);
@@ -163,6 +167,8 @@ export default defineComponent({
 
         useChangeColor.$subscribe((mutation, state) => {
             if(audioPlayer.value != null){
+                
+                colorHeader.value = state.currentColor;
                 if(audioPlayer.value.loop){
                     colorStorage.backgroundColor = state.currentColor;
                 }
@@ -318,6 +324,7 @@ export default defineComponent({
             progresBarPlayer,
             colorStorage,
             render,
+            colorHeader,
             play,
             pause,
             preSong,
@@ -331,5 +338,26 @@ export default defineComponent({
 </script>
 
 <style>
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background-color: v-bind(colorHeader);
+  outline: none;
+}
 
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: v-bind(colorHeader);
+  filter: saturate(0.5);
+  border-radius: 50%;
+  box-shadow:0px 0px 2px 2px rgba(255, 255, 255, 0.9);
+  border: 1px solid black;
+  outline: black;
+  cursor: pointer;
+}
 </style>

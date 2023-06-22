@@ -5,11 +5,16 @@
             class="card bg-white m-3 p-2  flex justify-between items-center rounded-md shadow-lg">
             <div 
                 @click="openSong(song, song.id)"
-                class="header-detail flex"
+                class="header-detail flex items-center"
             >
-                <img class="h-10"
+                <!-- <img class="h-10"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRINNDU_NLAhLUoEohUZVKmeffls-BagE6xYw&usqp=CAU"
-                    alt="icon music">
+                    alt="icon music"> -->
+                    <div 
+                        class="bg-red-500 h-full p-2 rounded hover:drop-shadow-lg cursor-pointer"
+                        :style="{'background-color': colorHeader}">
+                        <MusicIcon />
+                    </div>
                 <div class="ml-5">
                     <p class="title text-md text-cyan-700 break-all" :style="{'color': colorHeader}">{{ song.songName }}</p>
                     <p class="description text-xs text-slate-400 break-all">{{ song.artist }}</p>
@@ -39,12 +44,14 @@ import { useMusicList } from '../stores/musicList';
 import { useControls } from '../stores/controls';
 import { Song } from '../types/MusicListType';
 import IconHeart from './icons/IconHeart.vue';
+import MusicIcon from './icons/MusicIcon.vue';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
 
 export default {
     name: 'MusicPlayer',
     components:{
-        IconHeart
+        IconHeart,
+        MusicIcon,
     },
     props: {
         musicList: {

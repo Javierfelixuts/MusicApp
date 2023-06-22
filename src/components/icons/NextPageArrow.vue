@@ -1,0 +1,32 @@
+<template>
+    <svg 
+        :width="width" 
+        :height="height" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg">
+        <g id="Arrow / Arrow_Up_Right_SM">
+            <path id="Vector" d="M8 16L16 8M16 8H10M16 8V14" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </g>
+    </svg>
+</template>
+<script lang="ts">
+    export default {
+        name: 'NextPageArrow',
+        props: {
+            width: {
+                type: String,
+                default(){
+                    return "25px"
+                }
+            },
+            height: {
+                type: String,
+                default(){
+                    return "25px"
+                }
+            }
+        }
+    }
+</script>
