@@ -23,7 +23,7 @@
         </div>
         <div class="text-white mt-5 text-xs flex justify-around">
             <div>
-                <router-link to="/">
+                <router-link to="/home">
                     <button> Home</button>
                     <div></div>
                 </router-link>

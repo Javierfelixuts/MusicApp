@@ -11,16 +11,38 @@
                 <NextPageArrow />
             </div>
         </router-link>
+        <router-link to="/">
+            <div
+            @click="logOut" 
+            class="text-black text-sm flex w-full items-center underline  hover:underline-offset-1 ">
+                <h1>Salir</h1>
+                <NextPageArrow />
+            </div>
+        </router-link>
     </div>
 </template>
 <script lang="ts">
+import { useRouter } from 'vue-router';
 import InputColor from './InputColor.vue';
 import NextPageArrow from './icons/NextPageArrow.vue';
+import { LocalStorageManager } from '../classes/LocalStorageManager';
 export default {
     name: "MenuBar",
     components: {
         InputColor,
         NextPageArrow,
     },
+    setup(){
+        const router = useRouter();
+        const local = new LocalStorageManager();
+
+        const logOut = () => {
+            local.removeItem("auth");
+            router.push({path: '/'});
+        }
+        return {
+            logOut
+        }
+    }
 }
 </script>
