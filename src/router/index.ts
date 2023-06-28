@@ -61,7 +61,6 @@ const router = createRouter({
 
 
 router.beforeEach(async (to, from) => {
-    console.log("isAuth: ", isAuth.value);
     if(local.getItem("auth")){
         isAuth.value =  local.getItem("auth");
     }

@@ -5,6 +5,9 @@
             <p class="text-black text-xs">Cambiar color</p>
             <InputColor />
         </div>
+        <div class="flex items-center">
+            <button @click="clearColor" class="p-2 bg-red-500 rounded text-xs">Resetear color</button>
+        </div>
         <router-link to="/upload-url-youtube">
             <div class="text-black text-sm flex w-full items-center underline  hover:underline-offset-1 ">
                 <h1>Upload song url</h1>
@@ -26,6 +29,8 @@ import { useRouter } from 'vue-router';
 import InputColor from './InputColor.vue';
 import NextPageArrow from './icons/NextPageArrow.vue';
 import { LocalStorageManager } from '../classes/LocalStorageManager';
+import { useChangeHeaderColor } from '../stores/changeHeaderColor';
+
 export default {
     name: "MenuBar",
     components: {
@@ -35,12 +40,21 @@ export default {
     setup(){
         const router = useRouter();
         const local = new LocalStorageManager();
+        const useChangeColor = useChangeHeaderColor();
+        
 
+        const clearColor = () => {
+            if(localStorage.getItem("currentColor")){
+                localStorage.removeItem("currentColor");
+                useChangeColor.$patch({currentColor: ""})
+            }
+        }
         const logOut = () => {
             local.removeItem("auth");
             router.push({path: '/'});
         }
         return {
+            clearColor,
             logOut
         }
     }
