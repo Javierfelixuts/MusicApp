@@ -25,6 +25,7 @@
 import { defineComponent, ref } from 'vue';
 import { useMusicList } from '../../stores/musicList';
 import { useChangeHeaderColor } from '../../stores/changeHeaderColor';
+import { User } from '../../classes/User';
 
 export default defineComponent({
     name: "IconHeart",
@@ -41,7 +42,7 @@ export default defineComponent({
     setup(props) {
         const music = useMusicList();
         const useChangeColor = useChangeHeaderColor();
-
+        const user = new User()
         const colorHeader = ref("#ff8888")
         if(localStorage.getItem("currentColor")){
             colorHeader.value = localStorage.getItem("currentColor") || '';
@@ -62,6 +63,7 @@ export default defineComponent({
             if(fillIcon.value == "none"){
                 fillIcon.value = colorHeader.value
                 music.setMyFavoriteMusicList(props.songId, true)
+                user.setMyFavoriteMusicList(props.songId)
             }
             else{
                 fillIcon.value = "none"

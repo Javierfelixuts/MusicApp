@@ -6,7 +6,7 @@ export const musicList = [
         description: 'Beso Josean Log',
         filePath: '../music/Josean_Log_Beso.mp3',
         duration: 211,
-        favorite: true,
+        favorite: false,
         popular: true,
     },
     {
@@ -27,7 +27,7 @@ export const musicList = [
         filePath: '../music/Josean_Log_Doma.mp3',
         imagePath: 'images/doma.jpg',
         duration: 188,
-        favorite: true,
+        favorite: false,
         popular: true,
     },
     {
@@ -47,7 +47,7 @@ export const musicList = [
         description: 'Tierra Josean Log',
         filePath: '../music/Josean_Log_Tierra.mp3',
         duration: 182,
-        favorite: true,
+        favorite: false,
         popular: false,
     },
     {

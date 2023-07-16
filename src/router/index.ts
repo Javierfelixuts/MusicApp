@@ -6,7 +6,7 @@ import UploadUrlYouTube from '../views/UploadUrlYouTube.vue';
 import LoginApp from '../views/LoginApp.vue';
 import { ref } from 'vue';
 import UserLogin from '../classes/UserLogin';
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import {onBeforeRouteUpdate, useRoute } from 'vue-router';
 import { LocalStorageManager } from '../classes/LocalStorageManager';
 
 const nameRoute = ref("");

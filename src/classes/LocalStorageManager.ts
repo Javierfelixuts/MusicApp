@@ -4,7 +4,7 @@ class LocalStorageManager{
         else return item + 'Not Founded!!';
     }
     setItem(itemName: string, itemValue: any){
-        localStorage.setItem(itemName, JSON.parse(itemValue))
+        localStorage.setItem(itemName, JSON.stringify(itemValue))
     }
     removeItem(itemName:string){
         localStorage.removeItem(itemName);

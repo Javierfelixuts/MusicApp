@@ -1,9 +1,9 @@
 <template>
     <div class="">
-        <h1>Music App</h1>
         <div class="p-8 lg:w-1/2 mx-auto">
+            <h1 class="text-center">Music App</h1>
             <div class="bg-white rounded-t-lg p-8">
-                <p class="text-center text-sm text-gray-400 font-light">Sign in with</p>
+                <p class="text-center text-sm text-gray-400 font-light">Iniciar sesión con:</p>
                 <div>
                     <div class="flex items-center justify-center space-x-4 mt-3"> <button
                             class="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
@@ -54,7 +54,7 @@
                             class="mr-3" /> <label for="remember">Remember me</label> </div>
                     <div class="flex items-center justify-center mt-8">
                         <button @click="sendForm"
-                            class="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                            class="bg-red-500 text-white py-2 px-4 uppercase rounded hover:bg-red-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                             Enviar </button>
                     </div>
                 </form>
@@ -80,6 +80,7 @@ export default {
         const sendForm = () => {
             if (userForm.value.email == "" && userForm.value.password == "") return;
             const login = userLoginClass.loginUser(userForm.value);
+            console.log("userForm: ", userForm.value)
             console.log("login:_ ", login)
             if(login){
                 router.push({path: 'home'})

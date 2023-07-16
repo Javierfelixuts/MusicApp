@@ -17,8 +17,8 @@
                     </div>
                 <div class="ml-5">
                     <p class="title text-md text-cyan-700 break-all" :style="{'color': colorHeader}">{{ song.songName }}</p>
-                    <p class="description text-xs text-slate-400 break-all">{{ song.artist }}</p>
-                    <p class="description text-xs text-slate-400 break-all">{{ intToTime(song.duration) }}</p>
+                    <p class="description text-xs text-sky-950 break-all">{{ song.artist }}</p>
+                    <p class="description text-xs text-sky-950 break-all">{{ intToTime(song.duration) }}</p>
                 </div>
             </div>
             <div class="menu flex">

@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-blue-500 mb-6" :style="{'background-color': colorHeader}"> <!-- fixed top-0 z-40 -->
+    <header class="bg-blue-600 mb-6" :style="{'background-color': colorHeader}"> <!-- fixed top-0 z-40 -->
         <div class="text-white flex justify-between">
             <div class="flex">
                 <div>
@@ -24,20 +24,20 @@
         <div class="text-white mt-5 text-xs flex justify-around">
             <div>
                 <router-link to="/home">
-                    <button> Home</button>
+                    <button class="font-bold"> Home</button>
                     <div></div>
                 </router-link>
             </div>
             <div>
                 <router-link to="/favorites">
-                    <button>Favoritos</button>
+                    <button class="font-bold">Favoritos</button>
                     <div></div>
                 </router-link>
             </div>
 
             <div>
                 <router-link to="/populares-songs">
-                    <button> Populares</button>
+                    <button class="font-bold"> Populares</button>
                     <div></div>
                 </router-link>
             </div>

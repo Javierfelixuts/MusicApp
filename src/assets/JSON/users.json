@@ -1,18 +1,30 @@
 [
-    {
-        "id": "o1s351skh245",
-        "username": "jaft2023",
-        "name": "Javier",
-        "last_name": "Felix",
-        "email": "javier.felix@gcabsa.com.mx",
-        "password": "jaft2023"
-      },
-    {
-        "id": "o1sskh245",
-        "username": "fredy2023",
-        "name": "Fredy",
-        "last_name": "Vazquez",
-        "email": "fredy.vazquez@gcabsa.com.mx",
-        "password": "fredy2023"
-      }
+  {
+    "id": "o1s351skh245",
+    "username": "jaft2023",
+    "name": "Javier",
+    "last_name": "Felix",
+    "email": "javier.felix@gcabsa.com.mx",
+    "password": "jaft2023",
+    "favorites_songs_id_list": [3, 1, 4]
+  },
+  {
+    "id": "o1sskh2415",
+    "username": "fredy2023",
+    "name": "Fredy",
+    "last_name": "Vazquez",
+    "email": "fredy.vazquez@gcabsa.com.mx",
+    "password": "fredy2023",
+    "favorites_songs_id_list": [5, 2, 3]
+    
+  },
+  {
+    "id": "o1sskh245",
+    "username": "dany2023",
+    "name": "Dany",
+    "last_name": "Olguin",
+    "email": "dany.olguin@gcabsa.com.mx",
+    "password": "dany2023",
+    "favorites_songs_id_list": [4, 1, 2]
+  }
 ]
