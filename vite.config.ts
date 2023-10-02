@@ -22,7 +22,37 @@ export default defineConfig({
       },
     }),
     
-    VitePWA({ registerType: 'autoUpdate' })
+    VitePWA(
+      { 
+        manifest: {
+          icons: [
+            {
+              src: "/icons/512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "any maskable",
+            },
+          ],
+        },
+        workbox: {
+          runtimeCaching: [
+            {
+              urlPattern: ({ url }) => {
+                return url.pathname.startsWith("/api");
+              },
+              handler: "CacheFirst" as const,
+              options: {
+                cacheName: "api-cache",
+                cacheableResponse: {
+                  statuses: [0, 200],
+                },
+              },
+            },
+          ],
+        },
+      })
+
+
   ],
   
   server: {

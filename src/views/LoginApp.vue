@@ -73,8 +73,8 @@ export default {
         
         const router = useRouter();
         const userForm = ref<UserLoginType>({
-            email: "",
-            password: "",
+            email: "javier.felix@gcabsa.com.mx",
+            password: "jaft2023",
         })
         const userLoginClass = new UserLogin();
         const sendForm = () => {
