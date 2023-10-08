@@ -1,5 +1,5 @@
 <template>
-    <div id="main" :class="{ 'grid gridCols1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10': controls.isGrid }"
+    <div id="main" :class="{ 'grid gridCols1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5': controls.isGrid }"
         class="main mb-12 mt-12 mb:mb-80">
         <div v-for="song in musicList"
             class="card bg-white m-3 p-2  flex justify-between items-center rounded-md shadow-lg">
@@ -33,6 +33,10 @@
                         clip-rule="evenodd" />
                 </svg> -->
             </div>
+        </div>
+
+        <div style="height: 305px;">
+
         </div>
     </div>
 </template>

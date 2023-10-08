@@ -3,12 +3,12 @@
     <Header v-if="$route.meta.show" />
     <MusicPlayer v-if="$route.meta.show" />
     <Transition 
-      :enter-active-class="route.meta.enterClass + ''" 
-      :leave-active-class="route.meta.leaveClass + ''">
-      <div :key="route.fullPath" class="absolute w-full" :class="route.meta.from">
-          <component :is="Component" :key="route.path" />
-      </div>
-    </Transition>
+    :enter-active-class="route.meta.enterClass + ''" 
+    :leave-active-class="route.meta.leaveClass + ''">
+    <div :key="route.fullPath" class="absolute w-full" :class="route.meta.from">
+      <component :is="Component" :key="route.path" />
+    </div>
+  </Transition>
   </router-view>
 </template>
 
