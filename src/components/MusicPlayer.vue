@@ -1,13 +1,12 @@
 <template>
-    <div v-if="player.isOpen" id="reproductor" class="w-full mb-6 z-10" style="position: fixed; bottom: 0">
+    <div v-if="player.isOpen" id="reproductor" class="w-full z-10" style="position: fixed; bottom: 0">
         <div class="flex items-center justify-center bg-red-lightest">
-            <div class="bg-white shadow-lg rounded-lg z-10" style="width: 45rem !important;">
+            <div class="bg-white shadow-lg rounded-lg z-10 w-full">
                 <div class="flex">
-                    <div>
-                        <img class="w-full rounded hidden md:block" src="https://tailwindcss.com/img/card-top.jpg"
-                            alt="Album Pic">
-                    </div>
+                    <img class="hidden object-contain h-48 w-96 rounded md:block" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
                     <div class="w-full px-4 py-1">
+                        
+                        <img class="block md:hidden rounded" style="height: 50px;" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
                         <div class="flex justify-between">
                             <div>
                                 <h3 id="title" class="text-2xl text-grey-darkest font-medium">{{
@@ -341,7 +340,7 @@ export default defineComponent({
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
-  height: 10px;
+  height: 5px;
   border-radius: 10px;
   background-color: v-bind(colorHeader);
   outline: none;
@@ -352,11 +351,10 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 20px;
   height: 20px;
-  background-color: v-bind(colorHeader);
+  background-color: #fff;
   filter: saturate(0.5);
   border-radius: 50%;
-  box-shadow:0px 0px 2px 2px rgba(255, 255, 255, 0.9);
-  border: 1px solid black;
+  border: 3px solid v-bind(colorHeader);
   outline: black;
   cursor: pointer;
 }
