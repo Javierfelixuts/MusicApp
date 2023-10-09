@@ -1,0 +1,336 @@
+<template>
+  <svg
+   width="180"
+   height="160"
+   viewBox="0 0 86.618439 57.363079"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-50.227231,-84.444486)">
+    <circle
+       style="fill:#000000;stroke-width:0.264583"
+       id="path1"
+       cx="66.200974"
+       cy="126.97564"
+       r="14.831912" />
+    <g
+       id="g13">
+      <rect
+         style="fill:#000000;stroke-width:0.231451"
+         id="rect1"
+         width="7.5347867"
+         height="42.437458"
+         x="73.4981"
+         y="84.53817" />
+      <path
+         style="fill:#000000;stroke-width:0.264583"
+         d="m 81.032889,85.613929 -3e-6,6.901416 c 0,0 2.295171,1.265031 4.65904,1.77554 1.554754,0.33577 4.196666,1.958255 4.808126,5.334998 0.229016,1.264727 0.517073,2.683467 0.514829,4.582407 -0.001,0.87635 -0.504398,4.63285 -0.504398,4.63285 0,0 3.655017,-9.005806 1.282101,-14.848885 -1.947041,-4.794401 -7.762588,-6.405393 -9.649426,-7.36923 -0.373817,-0.190954 -1.110269,-0.794953 -1.110271,-1.617134"
+         id="path2"
+         sodipodi:nodetypes="ccssscssc" />
+    </g>
+    <circle
+       style="fill:#ff0000;stroke-width:0.264583"
+       id="path3"
+       cx="66.200974"
+       cy="126.97564"
+       r="8.2569418" />
+    <g
+       id="g10">
+      <path
+         id="path3-8"
+         style="fill:none;stroke:#ffffff;stroke-width:0.603;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 56.40074,123.05025 c 0,-3.49 2.829206,-6.31918 6.319198,-6.31918"
+         sodipodi:nodetypes="cc" />
+      <path
+         id="path3-8-4"
+         style="fill:none;stroke:#ffffff;stroke-width:0.665;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 54.431998,123.01925 c 0,-4.56018 3.69676,-8.25694 8.25694,-8.25694"
+         sodipodi:nodetypes="cc" />
+      <path
+         id="path3-8-4-8"
+         style="fill:none;stroke:#ffffff;stroke-width:0.638;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 58.263032,122.58208 c 0.546169,-2.69142 1.701596,-3.13911 3.712684,-3.86338"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g11"
+       transform="rotate(180,66.309168,127.06168)">
+      <path
+         id="path3-8-5"
+         style="fill:none;stroke:#ffffff;stroke-width:0.603;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 56.40074,123.05025 c 0,-3.49 2.829206,-6.31918 6.319198,-6.31918"
+         sodipodi:nodetypes="cc" />
+      <path
+         id="path3-8-4-9"
+         style="fill:none;stroke:#ffffff;stroke-width:0.665;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 54.431998,123.01925 c 0,-4.56018 3.69676,-8.25694 8.25694,-8.25694"
+         sodipodi:nodetypes="cc" />
+      <path
+         id="path3-8-4-8-5"
+         style="fill:none;stroke:#ffffff;stroke-width:0.638;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 58.263032,122.58208 c 0.546169,-2.69142 1.701596,-3.13911 3.712684,-3.86338"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <circle
+       style="fill:#ffffff;stroke-width:0.191079"
+       id="path4"
+       cx="66.200974"
+       cy="126.97564"
+       r="1.824031" />
+    <g
+       id="g14"
+       transform="translate(1.4809109,-0.09368996)">
+      <g
+         id="g13-9"
+         transform="matrix(-1,0,0,1,183.70628,0)">
+        <rect
+           style="fill:#000000;stroke-width:0.231451"
+           id="rect1-7"
+           width="7.5347867"
+           height="42.437458"
+           x="73.4981"
+           y="84.53817" />
+        <path
+           style="fill:#000000;stroke-width:0.264583"
+           d="m 81.032889,85.613929 -3e-6,6.901416 c 0,0 2.295171,1.265031 4.65904,1.77554 1.554754,0.33577 4.196666,1.958255 4.808126,5.334998 0.229016,1.264727 0.517073,2.683467 0.514829,4.582407 -0.001,0.87635 -0.504398,4.63285 -0.504398,4.63285 0,0 3.655017,-9.005806 1.282101,-14.848885 -1.947041,-4.794401 -7.762588,-6.405393 -9.649426,-7.36923 -0.373817,-0.190954 -1.110269,-0.794953 -1.110271,-1.617134"
+           id="path2-6"
+           sodipodi:nodetypes="ccssscssc" />
+      </g>
+      <circle
+         style="fill:#000000;stroke-width:0.264583"
+         id="path1-8"
+         cx="-117.55215"
+         cy="126.97564"
+         r="14.831912"
+         transform="scale(-1,1)" />
+      <circle
+         style="fill:#ff0000;stroke-width:0.264583"
+         id="path3-1"
+         cx="-117.55215"
+         cy="126.97564"
+         r="8.2569418"
+         transform="scale(-1,1)" />
+      <g
+         id="g10-77"
+         transform="matrix(-1,0,0,1,183.75312,0)">
+        <path
+           id="path3-8-0"
+           style="fill:none;stroke:#ffffff;stroke-width:0.603;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 56.40074,123.05025 c 0,-3.49 2.829206,-6.31918 6.319198,-6.31918"
+           sodipodi:nodetypes="cc" />
+        <path
+           id="path3-8-4-3"
+           style="fill:none;stroke:#ffffff;stroke-width:0.665;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 54.431998,123.01925 c 0,-4.56018 3.69676,-8.25694 8.25694,-8.25694"
+           sodipodi:nodetypes="cc" />
+        <path
+           id="path3-8-4-8-7"
+           style="fill:none;stroke:#ffffff;stroke-width:0.638;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 58.263032,122.58208 c 0.546169,-2.69142 1.701596,-3.13911 3.712684,-3.86338"
+           sodipodi:nodetypes="cc" />
+      </g>
+      <g
+         id="g11-6"
+         transform="matrix(1,0,0,-1,51.134784,254.12336)">
+        <path
+           id="path3-8-5-4"
+           style="fill:none;stroke:#ffffff;stroke-width:0.603;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 56.40074,123.05025 c 0,-3.49 2.829206,-6.31918 6.319198,-6.31918"
+           sodipodi:nodetypes="cc" />
+        <path
+           id="path3-8-4-9-7"
+           style="fill:none;stroke:#ffffff;stroke-width:0.665;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 54.431998,123.01925 c 0,-4.56018 3.69676,-8.25694 8.25694,-8.25694"
+           sodipodi:nodetypes="cc" />
+        <path
+           id="path3-8-4-8-5-6"
+           style="fill:none;stroke:#ffffff;stroke-width:0.638;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 58.263032,122.58208 c 0.546169,-2.69142 1.701596,-3.13911 3.712684,-3.86338"
+           sodipodi:nodetypes="cc" />
+      </g>
+      <circle
+         style="fill:#ffffff;stroke-width:0.191079"
+         id="path4-2"
+         cx="-117.55215"
+         cy="126.97564"
+         r="1.824031"
+         transform="scale(-1,1)" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:10.0834px;fill:#1a1a1a;stroke:none;stroke-width:2.0262;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="115.85172"
+       y="107.75029"
+       id="text14"><tspan
+         sodipodi:role="line"
+         id="tspan14"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#1a1a1a;stroke:none;stroke-width:2.0262"
+         x="115.85172"
+         y="107.75029">USIC</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.0834px;fill:#1a1a1a;stroke:none;stroke-width:2.0262;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="50.030289"
+       y="107.75029"
+       id="text14-9"><tspan
+         sodipodi:role="line"
+         id="tspan14-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#1a1a1a;stroke:none;stroke-width:2.0262"
+         x="50.030289"
+         y="107.75029">APP</tspan></text>
+  </g>
+</svg>
+  
+  </template>
+  
+  <script lang="ts">
+  import { gsap, Sine } from 'gsap'
+  import { defineComponent, ref } from 'vue';
+  export default defineComponent({
+    name: "MusicAppLogo",
+    setup(){
+        const heartface = ref(null);
+        const eyes = ref(null);
+        const blush = ref(null);
+        const openmouth = ref(null);
+        const hearteyes = ref(null);
+
+        const tl = gsap.timeline();
+
+        function makeHeart() {
+
+  
+        tl.add('start')
+        tl.fromTo(
+          eyes.value,
+          {
+            duration: 0.1,
+            scaleY: 1,
+            transformOrigin: '50% 50%;'
+          },
+          {
+            scaleY: 0,
+            transformOrigin: '50% 50%;',
+            repeat: 3,
+            yoyo: true,
+            ease: Sine.easeInOut
+          },
+          'start'
+        )
+        tl.fromTo(
+          [blush.value, eyes.value],
+          {
+            duration: 0.3,
+            y: 0
+          },
+          {
+            y: -5,
+            ease: Sine.easeOut
+          },
+          'start'
+        )
+        tl.fromTo(
+          heartface.value,
+          {
+            duration: 0.3,
+            opacity: 0
+          },
+          {
+            opacity: 1,
+            ease: Sine.easeOut
+          },
+          'start+=0.3'
+        )
+        tl.from(
+          openmouth.value,
+          {
+            duration: 0.3,
+            scaleY: 0,
+            ease: Sine.easeOut
+          },
+          'start+=0.3'
+        )
+        tl.from(
+          hearteyes.value,
+          {
+            duration: 0.2,
+            rotation: 10,
+            repeat: 4,
+            yoyo: true,
+            transformOrigin: '50% 50%',
+            ease: Sine.easeOut
+          },
+          'start+=0.3'
+        )
+        tl.to(
+          heartface.value,
+          {
+            duration: 0.1,
+            opacity: 0,
+            ease: Sine.easeIn
+          },
+          'start+=1.1'
+        )
+        tl.fromTo(
+            eyes.value,
+          {
+            duration: 0.1,
+            scaleY: 1,
+            transformOrigin: '50% 50%;'
+          },
+          {
+            scaleY: 0,
+            transformOrigin: '50% 50%;',
+            repeat: 3,
+            yoyo: true,
+            ease: Sine.easeInOut
+          },
+          'start+=1.1'
+        )
+        tl.to(
+          [blush.value, eyes.value],
+          {
+            duration: 0.3,
+            y: 0,
+            ease: Sine.easeIn
+          },
+          'start+=1.1'
+        )
+      }
+        return {
+             heartface,
+            eyes,
+            blush,
+            openmouth,
+            hearteyes,
+            makeHeart
+        }
+    }
+      
+  })
+  </script>
+  
+  <style scoped>
+  #heartface {
+    visibility: hidden;
+  }
+  </style>
