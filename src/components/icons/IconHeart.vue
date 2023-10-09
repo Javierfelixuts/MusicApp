@@ -2,7 +2,7 @@
     <svg
     class="cursor-pointer hover:drop-shadow-lg"
     @click="fillHeart" 
-        width="8mm" height="8mm" viewBox="0 0 23.962452 21.528046" version="1.1" id="svg5"
+        width="28" height="28" viewBox="0 0 23.962452 21.528046" version="1.1" id="svg5"
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
         xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
         xmlns:svg="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@ export default defineComponent({
         const music = useMusicList();
         const useChangeColor = useChangeHeaderColor();
         const user = new User()
-        const colorHeader = ref("#ff8888")
+        const colorHeader = ref("#ef4444")
         if(localStorage.getItem("currentColor")){
             colorHeader.value = localStorage.getItem("currentColor") || '';
         }
