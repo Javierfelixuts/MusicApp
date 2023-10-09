@@ -2,11 +2,11 @@
     <div v-if="player.isOpen" id="reproductor" class="w-full z-10" style="position: fixed; bottom: 0">
         <div class="flex items-center justify-center bg-red-lightest">
             <div class="bg-white shadow-lg rounded-lg z-10 w-full">
-                <div class="flex">
-                    <img class="hidden object-contain h-48 w-96 rounded md:block" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
+                <div class="flex" style="padding-top: 20px;">
+                    <img class="hidden object-contain h-48 w-96 rounded md:block ml-5" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
+                    <img class="block md:hidden rounded ml-3 mt-3" style="height: 50px;" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
                     <div class="w-full px-4 py-1">
                         
-                        <img class="block md:hidden rounded" style="height: 50px;" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
                         <div class="flex justify-between">
                             <div>
                                 <h3 id="title" class="text-2xl text-grey-darkest font-medium">{{
@@ -63,7 +63,7 @@
                                     <path d="M13 5h3v10h-3V5zM4 5l9 5-9 5V5z" />
                                 </svg>
                             </div>
-                            <div id="loop_song" @click="loopSong()" :style="colorStorage" class="text-slate-900 p-2 rounded">
+                            <div id="loop_song" @click="loopSong()" :style="colorStorage" class="text-slate-900 p-2 rounded cursor-pointer">
                                 <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path

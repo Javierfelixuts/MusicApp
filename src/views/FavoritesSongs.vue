@@ -1,10 +1,11 @@
 <template>
+  <div v-if="musicList.length <= 0" class="text-center">
+      No favorite songs
+    </div>
     <div>
         <MusicList :musicList="musicList"/>
     </div>
-    <div v-if="musicList.length <= 0" class="text-center">
-      No favorite songs
-    </div>
+    
 </template>
 
 <script lang="ts">
