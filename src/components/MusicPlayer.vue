@@ -38,6 +38,7 @@
                                     <path d="M4 5h3v10H4V5zm12 0v10l-9-5 9-5z" />
                                 </svg>
                             </div>
+                            
                             <div @click="pause" v-if="!canPlay" id="pause_song"
                                 class="text-white p-4 rounded-full bg-rose-500 shadow-lg cursor-pointer"
                                :style="{'background-color': colorHeader}">
@@ -81,6 +82,7 @@
                     <div class="mt-1">
                         <input
                         @change="changeProgresBarPlayer"
+                        @input="updateProgessBarPlayer"
                         class="w-full in-range:border-green-500" type="range" min="0" max="100" 
                         :value="progresBarPlayer" id="progressBar"
                         
@@ -114,7 +116,8 @@ export default defineComponent({
         const render = ref(0);
         const music = useMusicList();
         const player = useMusicPlayer();
-        const progresBarPlayer = ref(0);
+        const progresBarPlayer = ref<null | number>(0);
+        const dragInputRangeProgress = ref(false);
 
         //console.log("player: ", player); runtime-core.esm-bundler.js:40 [Vue warn]: The `compilerOptions` config option is only respected when using a build of Vue.js that includes the runtime compiler (aka "full build"). Since you are using the runtime-only build, `compilerOptions` must be passed to `@vue/compiler-dom` in the build setup instead.
         const audioPlayer =  ref<HTMLAudioElement | null>(null);
@@ -134,14 +137,23 @@ export default defineComponent({
         
         function changeProgresBarPlayer(event: any){
             console.log(event.target.value);
-
-            if(audioPlayer.value !== null && event.target !== null){
+            
+                if(audioPlayer.value !== null && event.target !== null){
                 let duration = audioPlayer.value?.duration || 1;
-                let percentage = (Number(event.target?.value) / 100) * duration;
-                
+                const percentage = (Number(event.target?.value) / 100) * duration;
                 audioPlayer.value.currentTime = percentage;
-                audioPlayer.value.play();
+                if(!canPlay){
+                    audioPlayer.value.play();
+                }
             }
+            dragInputRangeProgress.value = false;
+            
+        }
+
+        function updateProgessBarPlayer(event: any){
+            dragInputRangeProgress.value = true;
+            console.log("event: ", event); 
+            console.log("dragInputRangeProgress: ", dragInputRangeProgress.value); 
         }
         onMounted(() => {
             audioPlayer.value = new Audio(songUrl.value);
@@ -150,8 +162,14 @@ export default defineComponent({
 
                 let currentTime = audioPlayer.value?.currentTime || 1;
 
-                let percentage = (currentTime / duration) * 100;
-                progresBarPlayer.value = percentage;
+                const percentage = (currentTime / duration) * 100;
+                if(dragInputRangeProgress.value){
+                    progresBarPlayer.value = null;
+
+                }
+                else{
+                    progresBarPlayer.value = percentage;
+                }
                 if(currentTimeLabel.value != null && durationSongLabel.value != null){
                     currentTimeLabel.value.innerText = intToTime(Math.floor(currentTime)).toString();
                     durationSongLabel.value.innerText = intToTime(Math.floor(duration)).toString();
@@ -185,7 +203,7 @@ export default defineComponent({
         })
 
         player.$subscribe((mutation, state) => {
-            canPause.value = true;
+            
             songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href;
 
             currentSongId.value  = state.id;
@@ -197,7 +215,8 @@ export default defineComponent({
                 audioPlayer.value.src = songUrl.value;
                 audioPlayer.value.play();
             }
-
+            canPause.value = true;
+            canPlay.value = false;
             currentSong.value = state;
             /* if (audioPlayer.value) {
                 audioPlayer.value?.src = songUrl;
@@ -331,6 +350,7 @@ export default defineComponent({
             nextSong,
             randomSong,
             changeProgresBarPlayer,
+            updateProgessBarPlayer,
         }
     }
 })
