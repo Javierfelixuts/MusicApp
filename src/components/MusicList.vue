@@ -2,33 +2,31 @@
     <div id="main" :class="{ 'grid gridCols1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5': controls.isGrid }"
         class="main mb-12 mt-12 mb:mb-80">
         <div v-for="song in musicList"
-            
             class="card bg-white m-3 p-2 cursor-pointer flex justify-between items-center rounded-md shadow-lg">
             <div class="flex justify-between items-center w-full">
-                <div class="header-detail flex items-center w-full"  @click="openSong(song, song.id)">
-                <div class="bg-red-500 h-full p-2 rounded hover:drop-shadow-lg cursor-pointer"
-                    :style="{'background-color': colorHeader}">
-                    <MusicIcon />
+                <div class="header-detail flex items-center w-full" @click="openSong(song, song.id)">
+                    <div class="bg-red-500 h-full p-2 rounded hover:drop-shadow-lg cursor-pointer"
+                        :style="{ 'background-color': colorHeader }">
+                        <MusicIcon />
+                    </div>
+                    <div class="ml-5">
+                        <p class="title text-md text-cyan-700 break-all" :style="{ 'color': colorHeader }">{{ song.songName }}
+                        </p>
+                        <p class="description text-xs text-sky-950 break-all">{{ song.artist }}</p>
+                        <p class="description text-xs text-sky-950 break-all">{{ intToTime(song.duration) }}</p>
+                    </div>
                 </div>
-                <div class="ml-5">
-                    <p class="title text-md text-cyan-700 break-all" :style="{'color': colorHeader}">{{ song.songName }}</p>
-                    <p class="description text-xs text-sky-950 break-all">{{ song.artist }}</p>
-                    <p class="description text-xs text-sky-950 break-all">{{ intToTime(song.duration) }}</p>
-                </div>
-                </div>
-                <div class="menu flex">
-                <IconHeart 
-                    :key="render"
-                    :songId="song.id"
-                    :isFavorite="song"/>
-                
+                <div  class="menu flex">
+                    <IconHeart :key="render" :songId="song.id" :isFavorite="song" />
+
                 </div>
             </div>
         </div>
 
-        <div style="height: 305px;">
 
-        </div>
+    </div>
+    <div v-if="openPlayer" style="height: 305px;">
+
     </div>
 </template>
 
@@ -44,7 +42,7 @@ import { useChangeHeaderColor } from '../stores/changeHeaderColor';
 
 export default {
     name: 'MusicPlayer',
-    components:{
+    components: {
         IconHeart,
         MusicIcon,
     },
@@ -57,6 +55,7 @@ export default {
     },
     setup(props) {
         const render = ref(0);
+        const openPlayer = ref(false);
         const player = useMusicPlayer();
         const music = useMusicList();
         const controls = useControls();
@@ -71,9 +70,9 @@ export default {
             colorHeader.value = state.currentColor;
         })
         music.$subscribe((mutation, state) => {
-            if(music.getOneOfMyFavoriteSongs(player.id)){
+            if (music.getOneOfMyFavoriteSongs(player.id)) {
                 render.value = 1;
-            }else{
+            } else {
                 render.value = 2;
             }
             //render.value = music.getOneOfMyFavoriteSongs(player.id);
@@ -81,6 +80,7 @@ export default {
 
 
         const openSong = (song: Song, id: number) => {
+            openPlayer.value = true;
             player.$patch({
                 isOpen: true,
                 id,
@@ -110,6 +110,7 @@ export default {
         return {
             render,
             controls,
+            openPlayer,
             colorHeader,
             openSong,
             intToTime,
