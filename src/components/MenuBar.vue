@@ -4,6 +4,7 @@
         <div class="flex items-center">
             <p class="text-black text-xs">Cambiar color</p>
             <InputColor />
+            <InputColor />
         </div>
         <div class="flex items-center">
             <button @click="clearColor" class="p-2 bg-red-500 rounded text-xs">Resetear color</button>
