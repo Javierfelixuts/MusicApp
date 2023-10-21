@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import PopularesSongs from '../views/PopularesSongs.vue';
 import MusicList from '../views/MusicList.vue';
 import FavoritesSongs from '../views/FavoritesSongs.vue';
+import MusicFromServer from '../views/MusicFromServer.vue';
 import UploadUrlYouTube from '../views/UploadUrlYouTube.vue';
 import LoginApp from '../views/LoginApp.vue';
 import { ref } from 'vue';
@@ -46,6 +47,14 @@ const router = createRouter({
         { path: '/favorites', component: FavoritesSongs, 
             meta: {
                 show: true,
+                nameRoute: nameRoute.value,
+                enterClass: "animate__animated animate__bounceInLeft",
+                leaveClass: "animate__animated animate__bounceOutRight"
+            }
+        },
+        { path: '/music-server', component: MusicFromServer, 
+            meta: {
+                show: false,
                 nameRoute: nameRoute.value,
                 enterClass: "animate__animated animate__bounceInLeft",
                 leaveClass: "animate__animated animate__bounceOutRight"

@@ -41,6 +41,12 @@
                     <div></div>
                 </router-link>
             </div>
+            <div>
+                <router-link to="/music-server">
+                    <button class="font-bold"> Music Server</button>
+                    <div></div>
+                </router-link>
+            </div>
         </div>
 
         <div class="search mt-3">

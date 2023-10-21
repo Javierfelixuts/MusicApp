@@ -44,6 +44,8 @@ import { useRouter } from 'vue-router';
 import BackArrowPage from '../components/icons/BackArrowPage.vue';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
 import { useMusicPlayer } from '../stores/musicPlayer';
+import axios from 'axios';
+
 
 export default {
     name: 'UploadUrlYouTube',
@@ -52,6 +54,10 @@ export default {
       BackArrowPage
     },
     setup(){
+        const endpoint = 'http://127.0.0.1:2222/api/songs/info/'
+        console.log("endpoint: ", endpoint);
+        console.log("endpoint 2: ", import.meta.env.MUSIC_DB);
+
         const useChangeColor = useChangeHeaderColor();
         const router = useRouter();
         const inputUrlYT = ref("");
@@ -66,16 +72,19 @@ export default {
         useChangeColor.$subscribe((mutation, state) => {
             colorHeader.value = state.currentColor;
         })
-        const sendToApi = () => {
+        const sendToApi = async () => {
             if(inputUrlYT.value == ""){
                 alert("el texto no puede estar vacío");
                 return;
             }
             isLoading.value = !isLoading.value;
-            setTimeout(() => {
-                isLoading.value = !isLoading.value;
-            }, 4000);
-        }
+            try {
+            const response = await axios.get(endpoint + '?videoLink=' + inputUrlYT.value);
+                console.log(response);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
         const goBack = () => {
             router.go(-1);
         }
