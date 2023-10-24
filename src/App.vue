@@ -1,6 +1,6 @@
 <template>
   <router-view v-slot="{ Component, route }">
-    <Header v-if="$route.meta.show" />
+    <Header  />
     <MusicPlayer v-if="$route.meta.show" />
     <Transition 
     :enter-active-class="route.meta.enterClass + ''" 
