@@ -104,6 +104,7 @@ import { defineComponent, onMounted, onUnmounted, reactive, ref } from 'vue';
 
 import IconHeart from './icons/IconHeart.vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
+import { useSongsServerStore } from '../stores/musicServerStore';
 import { useMusicList } from '../stores/musicList';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
 
@@ -115,6 +116,9 @@ export default defineComponent({
     setup() {
         const render = ref(0);
         const music = useMusicList();
+        const musicL = useSongsServerStore();
+
+        console.log("musicL: ", musicL);
         const player = useMusicPlayer();
         const progresBarPlayer = ref<null | number>(0);
         const dragInputRangeProgress = ref(false);

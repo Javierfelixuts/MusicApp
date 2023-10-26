@@ -48,7 +48,7 @@ export default {
     },
     props: {
         musicList: {
-            type: Array<Song>,
+            type: <any>[],
             default: [],
             required: false,
         }
