@@ -1,7 +1,7 @@
 export type Song = {
     id: number;
-    artist: string;
-    songName: string;
+    author: string;
+    name: string;
     description: string;
     filePath: string;
     duration: number;

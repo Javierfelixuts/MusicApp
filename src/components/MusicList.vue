@@ -10,9 +10,9 @@
                         <MusicIcon />
                     </div>
                     <div class="ml-5">
-                        <p class="title text-md text-cyan-700 break-all" :style="{ 'color': colorHeader }">{{ song.songName }}
+                        <p class="title text-md text-cyan-700 break-all" :style="{ 'color': colorHeader }">{{ song.name }}
                         </p>
-                        <p class="description text-xs text-sky-950 break-all">{{ song.artist }}</p>
+                        <p class="description text-xs text-sky-950 break-all">{{ song.author }}</p>
                         <p class="description text-xs text-sky-950 break-all">{{ intToTime(song.duration) }}</p>
                     </div>
                 </div>
