@@ -3,6 +3,7 @@ import { ref } from 'vue';
 export const useSongsServerStore = defineStore('songsServerStore', {
   state(){
     const songs = ref([]);
+    
     const currentColor = ref("ffff");
     async function fetchSongs() {
         // Realiza una solicitud a tu API para obtener las canciones
@@ -11,6 +12,7 @@ export const useSongsServerStore = defineStore('songsServerStore', {
         console.log("data: ", data);
         songs.value = data; // Actualiza el estado con los datos de la API
     }
+
     return {currentColor, songs, fetchSongs}
   }
   // could also be defined as
