@@ -3,6 +3,7 @@ import { ref } from 'vue';
 export const useSongsServerStore = defineStore('songsServerStore', {
   state(){
     const songs = ref([]);
+    const songsServer = ref([]);
     
     const currentColor = ref("ffff");
     async function fetchSongs() {
