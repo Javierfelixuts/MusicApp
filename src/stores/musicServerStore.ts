@@ -5,6 +5,7 @@ export const useSongsServerStore = defineStore('songsServerStore', {
     const songs = ref([]);
     const songsServer = ref([]);
     const isSongFromServer= ref([]);
+    const isSongFromServer= ref([]);
     
     const currentColor = ref("ffff");
     async function fetchSongs() {
