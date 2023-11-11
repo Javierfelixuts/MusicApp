@@ -13,7 +13,7 @@
                         <p class="title text-md text-cyan-700 break-all" :style="{ 'color': colorHeader }">{{ song.name }}
                         </p>
                         <p class="description text-xs text-sky-950 break-all">{{ song.author }}</p>
-                        <p class="description text-xs text-sky-950 break-all">{{ intToTime(song.duration) }}</p>
+                        <p class="description text-xs text-sky-950 break-all">{{ '14:00' }}</p>
                     </div>
                 </div>
                 <div  class="menu flex">
@@ -80,6 +80,8 @@ export default {
 
 
         const openSong = (song: Song, id: number) => {
+            console.log("song: ", song)
+            console.log("id: ", id)
             openPlayer.value = true;
             player.$patch({
                 isOpen: true,

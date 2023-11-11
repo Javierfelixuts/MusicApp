@@ -9,7 +9,6 @@ export const useSongsServerStore = defineStore('songsServerStore', {
         // Realiza una solicitud a tu API para obtener las canciones
         const response = await fetch('http://127.0.0.1:2222/api/songs/');
         const data = await response.json();
-        console.log("data: ", data);
         songs.value = data; // Actualiza el estado con los datos de la API
     }
 

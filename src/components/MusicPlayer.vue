@@ -118,7 +118,7 @@ export default defineComponent({
         const music = useMusicList();
         const musicL = useSongsServerStore();
 
-        console.log("musicL: ", musicL);
+        console.log("musicL: ", musicL.songs);
         const player = useMusicPlayer();
         const progresBarPlayer = ref<null | number>(0);
         const dragInputRangeProgress = ref(false);
