@@ -81,7 +81,9 @@ export default {
             try {
             const response = await axios.get(endpoint + '?videoLink=' + inputUrlYT.value);
                 console.log(response);
-                } catch (error) {
+                isLoading.value = false;
+            } catch (error) {
+                    isLoading.value = false;
                     console.error(error);
                 }
             }

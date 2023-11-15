@@ -1,6 +1,7 @@
 <template>
+
   <router-view v-slot="{ Component, route }">
-    <Header  />
+    <Header v-if="route.path !== '/'" />
     
     <MusicPlayer v-if="$route.meta.show" />
     <Transition 

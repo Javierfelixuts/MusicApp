@@ -52,7 +52,7 @@ export default {
         }
         const logOut = () => {
             local.removeItem("auth");
-            router.push({path: '/'});
+            router.push({path: '/login'});
         }
         return {
             clearColor,
