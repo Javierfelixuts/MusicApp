@@ -79,9 +79,12 @@ export default {
         })
 
 
-        const openSong = (song: Song, id: number) => {
-            console.log("song: ", song)
-            console.log("id: ", id)
+        const openSong = async (song: Song, id: number) => {
+
+            console.log({song, id})
+            const response = await fetch('http://127.0.0.1:2222/api/songs/show/' + id);
+            const data = await response.json();
+            console.log("data", data);
             openPlayer.value = true;
             player.$patch({
                 isOpen: true,
