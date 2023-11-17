@@ -17,13 +17,18 @@
 <script lang="ts">
 import Header from './components/Header.vue';
 import MusicPlayer from './components/MusicPlayer.vue';
+import { useSongsServerStore } from './stores/musicServerStore';
 export default {
   components: {
     Header,
     MusicPlayer
   },
   setup() {
-    return {}
+    const musicL = useSongsServerStore();
+      musicL.fetchSongs();
+    return {
+      
+    }
   }
 }
 </script>

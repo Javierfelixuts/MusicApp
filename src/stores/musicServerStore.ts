@@ -10,7 +10,10 @@ export const useSongsServerStore = defineStore('songsServerStore', {
         const response = await fetch('http://127.0.0.1:2222/api/songs/');
         const data = await response.json();
         songs.value = data; // Actualiza el estado con los datos de la API
-    }
+      }
+      
+      console.log("songsServer: ", songs.value);
+
 
     return {currentColor, songs, fetchSongs}
   }

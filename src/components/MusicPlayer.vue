@@ -117,10 +117,8 @@ export default defineComponent({
         const render = ref(0);
         const music = useMusicList();
         const musicL = useSongsServerStore();
+        const songs = ref([]);
 
-
-
-        console.log("musicL: ", musicL.songs);
         const player = useMusicPlayer();
         const progresBarPlayer = ref<null | number>(0);
         const dragInputRangeProgress = ref(false);
@@ -161,7 +159,10 @@ export default defineComponent({
             console.log("event: ", event); 
             console.log("dragInputRangeProgress: ", dragInputRangeProgress.value); 
         }
-        onMounted(() => {
+        onMounted(async () => {
+            await musicL.fetchSongs();
+            console.log("music: from server_ ", musicL.songs);
+            songs.value = musicL.songs;
             audioPlayer.value = new Audio(songUrl.value);
             audioPlayer.value.ontimeupdate = function(){
                 let duration = audioPlayer.value?.duration || 1;
@@ -209,8 +210,11 @@ export default defineComponent({
         })
 
         player.$subscribe((mutation, state) => {
+            
+            const song = songs.value.filter((song:any) => song.id === state.id)[0];
             console.log(mutation, state)
-            songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href;
+            
+            songUrl.value = new URL(song.mp3_path).href;
 
             currentSongId.value  = state.id;
             //const isMyFavoriteSong = music.getOneOfMyFavoriteSongs(currentSongId.value);
