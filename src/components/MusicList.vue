@@ -13,7 +13,7 @@
                         <p class="title text-md text-cyan-700 break-all" :style="{ 'color': colorHeader }">{{ song.name }}
                         </p>
                         <p class="description text-xs text-sky-950 break-all">{{ song.author }}</p>
-                        <p class="description text-xs text-sky-950 break-all">{{ '14:00' }}</p>
+                        <p class="description text-xs text-sky-950 break-all">{{ song.duration_string }}</p>
                     </div>
                 </div>
                 <div  class="menu flex">

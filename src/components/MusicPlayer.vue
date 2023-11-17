@@ -118,6 +118,8 @@ export default defineComponent({
         const music = useMusicList();
         const musicL = useSongsServerStore();
 
+
+
         console.log("musicL: ", musicL.songs);
         const player = useMusicPlayer();
         const progresBarPlayer = ref<null | number>(0);
@@ -207,7 +209,7 @@ export default defineComponent({
         })
 
         player.$subscribe((mutation, state) => {
-            
+            console.log(mutation, state)
             songUrl.value = new URL(music.musicListState[state.id]?.filePath, import.meta.url).href;
 
             currentSongId.value  = state.id;
