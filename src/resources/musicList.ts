@@ -1,3 +1,4 @@
+/* data dummy */
 export const musicList = [
     {
         id: 0,

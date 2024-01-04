@@ -14,7 +14,6 @@ const nameRoute = ref("");
 const isAuth = ref(false);
 const local = new LocalStorageManager();
 
-console.log("auth: ", local.getItem("auth"))
 const router = createRouter({
     history: createWebHistory(),
     routes: [
