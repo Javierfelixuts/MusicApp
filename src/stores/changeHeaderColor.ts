@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue';
 export const useChangeHeaderColor = defineStore('changeHeaderColor', {
   state(){
-    const currentColor = ref("ffsff");
+    const currentColor = ref("ffff");
     return {currentColor}
   }
   // could also be defined as
