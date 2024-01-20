@@ -1,5 +1,5 @@
 <template>
-    <div v-if="player.isOpen" id="reproductor" class="w-full z-10" style="position: fixed; bottom: 0">
+    <div v-if="player.isOpen" id="reproductor" class="w-full z-10">
         <div class="flex items-center justify-center bg-red-lightest">
             <div class="bg-white shadow-lg rounded-lg z-10 w-full">
                 <div class="flex" style="padding-top: 20px;">
