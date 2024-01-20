@@ -10,11 +10,6 @@ export const useMusicList = defineStore('musicList', {
     return { 
       musicListState: musicCloneList,
       musicCloneList,
-      musicPopularSongs: musicPopularSongsInitial,
-      musicPopularSongsInitial,
-      musicFavoriteSongs: musicFavoriteSongsInitial,
-      musicFavoriteSongsInitial,
-      idFavorite,
      }
   },
   // could also be defined as
@@ -27,29 +22,10 @@ export const useMusicList = defineStore('musicList', {
         const songTextLowerCase = query.toLocaleLowerCase();
         return songLowerCase.includes(songTextLowerCase);
       });
-      const musicFilteredPopular = this.musicPopularSongsInitial.filter((song) => {
-        const songLowerCase = song.description.toLocaleLowerCase();
-        const songTextLowerCase = query.toLocaleLowerCase();
-        return songLowerCase.includes(songTextLowerCase);
-      });
-      const musicFilteredFavorites = this.musicFavoriteSongsInitial.filter((song) => {
-        const songLowerCase = song.description.toLocaleLowerCase();
-        const songTextLowerCase = query.toLocaleLowerCase();
-        return songLowerCase.includes(songTextLowerCase);
-      });
-      
-      this.musicListState = musicFiltered;
-      this.musicPopularSongs = musicFilteredPopular;
-      this.musicFavoriteSongs = musicFilteredFavorites;
+   
       return musicFiltered;
     },
-    getIdFromMyFavoriteSong(){
-      return this.idFavorite;
-    },
-    setMyFavoriteMusicList(id: number, isFavorite: boolean){
-      this.idFavorite = id;
-      this.musicCloneList[id].favorite = isFavorite;
-    },
+  
     getOneOfMyFavoriteSongs(id: number){
       return this.musicCloneList[id].favorite;
     },
