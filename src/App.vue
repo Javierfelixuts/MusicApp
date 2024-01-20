@@ -1,9 +1,10 @@
 <template>
+<div class="h-screen">
 
   <router-view v-slot="{ Component, route }">
     <Header v-if="route.path !== '/'" />
     
-    <MusicPlayer v-if="$route.meta.show" />
+    <!-- <MusicPlayer v-if="$route.meta.show" /> -->
     <Transition 
     :enter-active-class="route.meta.enterClass + ''" 
     :leave-active-class="route.meta.leaveClass + ''">
@@ -12,6 +13,8 @@
     </div>
   </Transition>
   </router-view>
+</div>
+
 </template>
 
 <script lang="ts">
