@@ -1,6 +1,4 @@
 <template>
-    <div id="main" :class="{ 'grid gridCols1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5': controls.isGrid }"
-        class="main mb-12 mt-12 mb:mb-80">
         <div v-for="song in musicList"
             class="card bg-white m-3 p-2 cursor-pointer flex justify-between items-center rounded-md shadow-lg">
             <div class="flex justify-between items-center w-full">
@@ -21,10 +19,7 @@
 
                 </div>
             </div>
-        </div>
-
-
-    </div>
+            </div>
     <div v-if="openPlayer" style="height: 305px;">
 
     </div>
@@ -39,13 +34,15 @@ import { Song } from '../types/MusicListType';
 import IconHeart from './icons/IconHeart.vue';
 import MusicIcon from './icons/MusicIcon.vue';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
+import MusicPlayer from './MusicPlayer.vue';
 
 export default {
     name: 'MusicPlayer',
     components: {
-        IconHeart,
-        MusicIcon,
-    },
+    IconHeart,
+    MusicIcon,
+    MusicPlayer
+},
     props: {
         musicList: {
             type: <any>[],
