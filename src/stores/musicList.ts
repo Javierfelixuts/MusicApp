@@ -4,9 +4,6 @@ import { musicList } from '../resources/musicList';
 export const useMusicList = defineStore('musicList', {
   state: () => {
     const musicCloneList = [...musicList];
-    const musicPopularSongsInitial = musicCloneList.filter(song => song.popular);
-    const musicFavoriteSongsInitial = musicCloneList.filter(song => song.favorite);
-    const idFavorite = 0;
     return { 
       musicListState: musicCloneList,
       musicCloneList,
