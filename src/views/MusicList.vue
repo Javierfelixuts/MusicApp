@@ -7,7 +7,7 @@
     <div class="col-start-5 col-end-13 mx-3">
         <div >
             <!-- Reproductor -->
-            <MusicPlayer  />
+           <!--  <MusicPlayer  /> -->
         </div>
     </div>
   </div>
