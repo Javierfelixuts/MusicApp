@@ -247,7 +247,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
