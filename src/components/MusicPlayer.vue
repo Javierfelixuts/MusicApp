@@ -373,7 +373,7 @@ export default defineComponent({
   appearance: none;
   width: 20px;
   height: 20px;
-  background-color: red;
+  background-color: #fff;
   filter: saturate(0.5);
   border-radius: 50%;
   border: 3px solid v-bind(colorHeader);
