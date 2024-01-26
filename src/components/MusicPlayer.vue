@@ -183,7 +183,7 @@ export default defineComponent({
                 
                 let duration = audioPlayer.value?.duration || 1;
 
-                let currentTime = Math.ceil(audioPlayer.value?.currentTime || 1);
+                let currentTime = audioPlayer.value?.currentTime || 1;
 
                 console.log({duration, currentTime});
                 if(dragInputRangeProgress.value){
