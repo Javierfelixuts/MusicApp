@@ -3,7 +3,7 @@ export type Song = {
     author: string;
     name: string;
     description: string;
-    filePath: string;
+    mp3_path: string;
     duration: number;
     favorite: boolean,
     popular: boolean

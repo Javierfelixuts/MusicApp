@@ -107,6 +107,8 @@ import { useMusicPlayer } from '../stores/musicPlayer';
 import { useSongsServerStore } from '../stores/musicServerStore';
 import { useMusicList } from '../stores/musicList';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
+import { Song } from '../types/MusicListType';
+import { random } from 'gsap';
 
 export default defineComponent({
     name: 'MusicPlayer',
@@ -137,8 +139,8 @@ export default defineComponent({
         const colorHeader = ref(localStorage.getItem("currentColor") || '');
         const useChangeColor = useChangeHeaderColor();
 
-        const songUrl = ref(new URL(music.musicListState[currentSongId.value]?.filePath, import.meta.url).href);
-        
+        //const songUrl = ref(new URL(music.musicListState[currentSongId.value]?.filePath, import.meta.url).href);
+        const songUrl = ref('')
         function changeProgresBarPlayer(event: any){
             console.log(event.target.value);
             
@@ -198,7 +200,7 @@ export default defineComponent({
                 }
             }
         })
-        music.$subscribe((mutation, state) => {
+        /* music.$subscribe((mutation, state) => {
             console.log("playerud: ", state);
             //Rerender del icono heart
             console.log("getIdFromMyFavoriteSong:_ID ", music.getIdFromMyFavoriteSong());
@@ -207,45 +209,34 @@ export default defineComponent({
             }else{
                 render.value = 2;
             }
-        })
+        }) */
 
         player.$subscribe((mutation, state) => {
-            
-            const song = songs.value.filter((song:any) => song.id === state.id)[0];
-            console.log(mutation, state)
-            
+            const song = songs.value.filter((song:any) => song.id === state.id)[0] as Song;
             songUrl.value = new URL(song.mp3_path).href;
 
             currentSongId.value  = state.id;
-            //const isMyFavoriteSong = music.getOneOfMyFavoriteSongs(currentSongId.value);
 
-            //music.setMyFavoriteMusicList(currentSongId.value, isMyFavoriteSong)
             if(audioPlayer.value !== null){
                 audioPlayer.value.pause();
+                //audioPlayer.value.volume= 0.5
                 audioPlayer.value.src = songUrl.value;
                 audioPlayer.value.play();
             }
             canPause.value = true;
             canPlay.value = false;
             currentSong.value = state;
-            /* if (audioPlayer.value) {
-                audioPlayer.value?.src = songUrl;
-                audioPlayer.play();
-            } */
-            // import { MutationType } from 'pinia'
-            //mutation.type // 'direct' | 'patch object' | 'patch function'
-            // same as cartStore.$id
-            // mutation.storeId // 'cart'
-            // only available with mutation.type === 'patch object'
-            // mutation.payload // patch object passed to cartStore.$patch()
-
-            // persist the whole state to the local storage whenever it changes
-            //localStorage.setItem('cart', JSON.stringify(state))
         });
 
         function randomSong(){
-            const randomIndex = Math.floor(Math.random() * music.musicListState.length);
-            songUrl.value = new URL(music.musicListState[randomIndex]?.filePath, import.meta.url).href
+            const randomIndex = Math.floor(Math.random() * musicL.songs.length);
+            const song = musicL.songs[randomIndex];
+            console.log(song)
+            setSong(song);
+        }
+        
+        function setSong(song: Song){
+            songUrl.value = new URL(song.mp3_path).href;
         }
 
         const pause = () => {
@@ -257,7 +248,6 @@ export default defineComponent({
         const play = () => {
             canPause.value = true;
             canPlay.value = false;
-            //console.log(audio.src);
             audioPlayer.value?.play();
         }
         const loopSong = () => { 
