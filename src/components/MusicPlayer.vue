@@ -89,9 +89,9 @@
                          />
 
                         <!-- <div id="containerTimeline" class="flex items-center h-1 bg-grey-dark rounded-full">
-                          <div id="timeline" class="w-0 h-1 bg-red-500 rounded-l-lg  relative" style="width: 100%;"></div>
+                          <div ref="timeline" class="w-0 h-1 bg-red-500 rounded-l-lg  relative" style="width: 100%;"></div>
                           <div id="timelineBall" class="w-4 h-4 bg-pink-400 rounded-full shadow"></div>
-                      </div> -->
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -133,6 +133,7 @@ export default defineComponent({
         const currentSongId = ref(0);
         const currentTimeLabel = ref<HTMLParagraphElement | null>(null);
         const durationSongLabel = ref<HTMLParagraphElement | null>(null);
+        const timeline = ref<HTMLParagraphElement | number>(0);
         const loop = ref(false);
 
         const colorStorage = reactive({backgroundColor: 'initial', color: 'black'})
@@ -178,6 +179,7 @@ export default defineComponent({
                 }
                 else{
                     progresBarPlayer.value = percentage;
+                    console.log("progressBarPlayer: ", progresBarPlayer.value)
                 }
                 if(currentTimeLabel.value != null && durationSongLabel.value != null){
                     currentTimeLabel.value.innerText = intToTime(Math.floor(currentTime)).toString();
@@ -357,7 +359,7 @@ export default defineComponent({
 </script>
 
 <style>
-input[type="range"] {
+#progressBar {
   -webkit-appearance: none;
   width: 100%;
   height: 5px;
@@ -366,12 +368,12 @@ input[type="range"] {
   outline: none;
 }
 
-input[type="range"]::-webkit-slider-thumb {
+#progressBar::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 20px;
   height: 20px;
-  background-color: #fff;
+  background-color: red;
   filter: saturate(0.5);
   border-radius: 50%;
   border: 3px solid v-bind(colorHeader);
