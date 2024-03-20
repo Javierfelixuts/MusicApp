@@ -95,7 +95,7 @@
                         </div>
                         <input 
                         @change="changeVolume"
-                        class="volume" ref="volume" type="range" id="vol" name="vol" min="0" max="100">
+                        class="volume" ref="volume" type="range" id="vol" value="100" name="vol" min="0" max="100">
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@ export default defineComponent({
         const progresBarPlayer = ref<null | number>(0);
         const dragInputRangeProgress = ref(false);
 
-        const volume = ref<null | number>(0);
+        const volume = ref<null | number>(100);
         //console.log("player: ", player); runtime-core.esm-bundler.js:40 [Vue warn]: The `compilerOptions` config option is only respected when using a build of Vue.js that includes the runtime compiler (aka "full build"). Since you are using the runtime-only build, `compilerOptions` must be passed to `@vue/compiler-dom` in the build setup instead.
         const audioPlayer =  ref<HTMLAudioElement | null>(null);
         const canPlay = ref(false);
@@ -155,24 +155,11 @@ export default defineComponent({
 
         function changeProgresBarPlayer(event: any){
             console.log("event: ", event);
-            
-                if(audioPlayer.value !== null && event.target !== null){
-                let duration = audioPlayer.value?.duration || 1;
-                //const percentage = (Number(event.target?.value) / 100) * duration;
-                //audioPlayer.value.currentTime = percentage;
-                audioPlayer.value.currentTime = event.target.value;
-                /* if(!canPlay){
-                    audioPlayer.value.play();
-                } */
-            }
-            dragInputRangeProgress.value = false;
-            
+            dragInputRangeProgress.value = true;
         }
 
         function updateProgessBarPlayer(event: any){
             dragInputRangeProgress.value = true;
-            console.log("event2: ", event); 
-            console.log("dragInputRangeProgress: ", dragInputRangeProgress.value); 
         }
         onMounted(async () => {
             await musicL.fetchSongs();
@@ -180,15 +167,12 @@ export default defineComponent({
             songs.value = musicL.songs;
             audioPlayer.value = new Audio(songUrl.value);
             audioPlayer.value.ontimeupdate = function(){
-                
-                let duration = audioPlayer.value?.duration || 1;
-
-                let currentTime = audioPlayer.value?.currentTime || 1;
-
-                console.log({duration, currentTime});
+                    let duration = audioPlayer?.value.duration || 1;
+                    let currentTime = audioPlayer?.value.currentTime || 1;
+                console.log("audioPlayer: ", audioPlayer.value?.currentTime);
                 if(dragInputRangeProgress.value){
-                    console.log("here");
-                    progresBarPlayer.value = 17;
+                    progresBarPlayer.value = null;
+                
                 }
                 else{
                     const percentage = (currentTime / duration) * 100;
