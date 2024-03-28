@@ -6,6 +6,9 @@
       </div>
     <div class="col-start-5 col-end-13 mx-3">
         <div >
+          <audio controls >
+                                <source src="http://localhost:2222/api/songs/show/21" type="audio/mp3">
+                            </audio>
             <!-- Reproductor -->
            <!--  <MusicPlayer  /> -->
         </div>
@@ -30,7 +33,7 @@ import MusicPlayer from '../components/MusicPlayer.vue';
     const music = useMusicList();
     const musicList = ref(music.musicListState);
     const musicServer = useSongsServerStore();
-    const musicServerList = ref();
+    const musicServerList = ref([]);
     onMounted(async () => {
       await musicServer.fetchSongs();
       musicServerList.value = musicServer.songs;

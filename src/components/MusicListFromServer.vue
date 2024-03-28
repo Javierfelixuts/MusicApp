@@ -39,7 +39,7 @@ import { ref } from 'vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useMusicList } from '../stores/musicList';
 import { useControls } from '../stores/controls';
-import { Song } from '../types/MusicListType';
+import { Song } from '../types/Song';
 import IconHeart from './icons/IconHeart.vue';
 import MusicIcon from './icons/MusicIcon.vue';
 import PlayerServer from './PlayerServer.vue';
@@ -130,3 +130,4 @@ export default {
     }
 }
 </script>
+../types/Song

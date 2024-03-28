@@ -81,7 +81,6 @@
                     </div>
                     <div class="mt-1">
                         <input
-                        @change="changeProgresBarPlayer"
                         @input="updateProgessBarPlayer"
                         class="w-full in-range:border-green-500" type="range" min="0" max="100" 
                         :value="progresBarPlayer" id="progressBar"
@@ -95,7 +94,7 @@
                         </div>
                         <input 
                         @change="changeVolume"
-                        class="volume" ref="volume" type="range" id="vol" value="100" name="vol" min="0" max="100">
+                        class="volume" ref="volume" type="range" id="vol" value="20" name="vol" min="0" max="100">
                 </div>
             </div>
         </div>
@@ -110,7 +109,7 @@ import { useMusicPlayer } from '../stores/musicPlayer';
 import { useSongsServerStore } from '../stores/musicServerStore';
 import { useMusicList } from '../stores/musicList';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
-import { Song } from '../types/MusicListType';
+import { Song } from '../types/Song';
 import { random } from 'gsap';
 
 export default defineComponent({
@@ -128,9 +127,9 @@ export default defineComponent({
         const progresBarPlayer = ref<null | number>(0);
         const dragInputRangeProgress = ref(false);
 
-        const volume = ref<null | number>(100);
+        const volume = ref<null | number>(50);
         //console.log("player: ", player); runtime-core.esm-bundler.js:40 [Vue warn]: The `compilerOptions` config option is only respected when using a build of Vue.js that includes the runtime compiler (aka "full build"). Since you are using the runtime-only build, `compilerOptions` must be passed to `@vue/compiler-dom` in the build setup instead.
-        const audioPlayer =  ref<HTMLAudioElement | null>(null);
+        const audioPlayer =  ref(new Audio())
         const canPlay = ref(false);
         const canPause = ref(true);
         const currentSong  = ref();
@@ -153,35 +152,33 @@ export default defineComponent({
             }
         }
 
-        function changeProgresBarPlayer(event: any){
-            console.log("event: ", event);
-            dragInputRangeProgress.value = true;
-        }
-
         function updateProgessBarPlayer(event: any){
-            dragInputRangeProgress.value = true;
+            console.log("update: ", event.target.value);
+
+            const seek =  audioPlayer.value.duration * (Number(event.target.value) / 100);
+            audioPlayer.value.currentTime = seek;
+            console.log("seek: ", seek);
+            console.log("progresBarPlayer: ", progresBarPlayer.value);
         }
         onMounted(async () => {
             await musicL.fetchSongs();
-            console.log("music: from server_ ", musicL.songs);
             songs.value = musicL.songs;
-            audioPlayer.value = new Audio(songUrl.value);
             audioPlayer.value.ontimeupdate = function(){
-                    let duration = audioPlayer?.value.duration || 1;
-                    let currentTime = audioPlayer?.value.currentTime || 1;
-                console.log("audioPlayer: ", audioPlayer.value?.currentTime);
-                if(dragInputRangeProgress.value){
-                    progresBarPlayer.value = null;
-                
-                }
-                else{
+            let duration = audioPlayer?.value.duration || 1;
+            let currentTime = audioPlayer?.value.currentTime || 1;
+            if(dragInputRangeProgress.value){
+                progresBarPlayer.value = null;
+            
+            }
+            else{
                     const percentage = (currentTime / duration) * 100;
                     progresBarPlayer.value = percentage;
-                }
-                if(currentTimeLabel.value != null && durationSongLabel.value != null){
+            }
+            if(currentTimeLabel.value != null && durationSongLabel.value != null){
                     currentTimeLabel.value.innerText = intToTime(Math.floor(currentTime)).toString();
                     durationSongLabel.value.innerText = intToTime(Math.floor(duration)).toString();
                 }
+                
             }
 
         });
@@ -211,8 +208,10 @@ export default defineComponent({
         }) */
 
         player.$subscribe((mutation, state) => {
+            console.log("is changing: ", state);
             const song = songs.value.filter((song:any) => song.id === state.id)[0] as Song;
-            songUrl.value = new URL(song.mp3_path).href;
+            //songUrl.value = new URL(song.mp3_path).href;
+            songUrl.value = new URL('http://localhost:2222/api/songs/show/'+state.id).href;
 
             currentSongId.value  = state.id;
 
@@ -349,7 +348,6 @@ export default defineComponent({
             nextSong,
             randomSong,
             changeVolume,
-            changeProgresBarPlayer,
             updateProgessBarPlayer,
         }
     }

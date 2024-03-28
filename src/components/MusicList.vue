@@ -30,7 +30,7 @@ import { ref } from 'vue';
 import { useMusicPlayer } from '../stores/musicPlayer';
 import { useMusicList } from '../stores/musicList';
 import { useControls } from '../stores/controls';
-import { Song } from '../types/MusicListType';
+import { Song } from '../types/Song';
 import IconHeart from './icons/IconHeart.vue';
 import MusicIcon from './icons/MusicIcon.vue';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
@@ -44,11 +44,7 @@ export default {
     MusicPlayer
 },
     props: {
-        musicList: {
-            type: <any>[],
-            default: [],
-            required: false,
-        }
+        musicList: Array<any>
     },
     setup(props) {
         const render = ref(0);
@@ -77,16 +73,17 @@ export default {
 
 
         const openSong = async (song: Song, id: number) => {
-
+            player.$patch({
+                isOpen: true,
+                id,
+                song
+            });
             console.log({song, id})
             const response = await fetch('http://127.0.0.1:2222/api/songs/show/' + id);
             const data = await response.json();
             console.log("data", data);
             openPlayer.value = true;
-            player.$patch({
-                isOpen: true,
-                id,
-            });
+            
         }
         function intToTime(int: number) {
             // Obtener el número de horas
@@ -121,4 +118,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style></style>../types/Song
