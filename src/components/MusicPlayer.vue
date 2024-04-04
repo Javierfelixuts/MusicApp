@@ -91,11 +91,11 @@
                              <div ref="timeline" class="w-0 h-1 bg-red-500 rounded-l-lg  relative" style="width: 100%;"></div>
                              <div id="timelineBall" class="w-4 h-4 bg-pink-400 rounded-full shadow"></div>
                             </div> -->
-                        </div>
                         <input 
                         @change="changeVolume"
                         class="volume" ref="volume" type="range" id="vol" value="20" name="vol" min="0" max="100">
-                </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -166,6 +166,12 @@ export default defineComponent({
             audioPlayer.value.ontimeupdate = function(){
             let duration = audioPlayer?.value.duration || 1;
             let currentTime = audioPlayer?.value.currentTime || 1;
+
+
+            if(audioPlayer?.value.currentTime === audioPlayer?.value.duration){
+                audioPlayer.value.pause();
+                pause()
+            }
             if(dragInputRangeProgress.value){
                 progresBarPlayer.value = null;
             
@@ -355,16 +361,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
-#progressBar {
+/* #progressBar {
   -webkit-appearance: none;
   width: 100%;
   height: 5px;
   border-radius: 10px;
   background-color: v-bind(colorHeader);
   outline: none;
-}
+} */
 
-#progressBar::-webkit-slider-thumb {
+/* #progressBar::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 20px;
@@ -375,7 +381,50 @@ export default defineComponent({
   border: 3px solid v-bind(colorHeader);
   outline: black;
   cursor: pointer;
+} */
+
+#progressBar {
+  -webkit-appearance: none;
+  appearance: none; 
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border-radius: 16px;
 }
+
+#progressBar::-webkit-slider-runnable-track {
+  height: 15px;
+  background: #ccc;
+  border-radius: 16px;
+}
+
+#progressBar::-moz-range-track {
+  height: 15px;
+  background: #ccc;
+  border-radius: 16px;
+}
+
+#progressBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none; 
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid v-bind(colorHeader);
+  box-shadow: -407px 0 0 400px v-bind(colorHeader);
+}
+
+#progressBar::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid v-bind(colorHeader);
+  box-shadow: -407px 0 0 400px v-bind(colorHeader);
+}
+
 
 .volume {
     width: 100px;
