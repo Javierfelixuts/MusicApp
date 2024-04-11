@@ -1,5 +1,6 @@
 <template>
     <svg
+    id="menuI"
     ref="menuIcon"
     @click="clickPath"
      xmlns="http://www.w3.org/2000/svg" 
