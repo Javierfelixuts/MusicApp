@@ -13,7 +13,7 @@
                 <div class="ml-3">Music App</div>
             </div>
             <div class="z-20" @click="openMenuBar">
-                <IconBurger />
+                <IconBurger  />
             </div>
             <Transition
                 enter-active-class="animate__animated animate__bounceInRight"
@@ -95,7 +95,14 @@ export default {
         onMounted(() => {
             gsap.to(document.getElementById("menuRight"), { duration: 1,  x: 2000 })
         })
-        const openMenuBar = () => {
+        window.onclick = function(event:any) {
+            if (event.target.id != "menuRight" && event.target.id != "menuI") {
+                if(isMenuOpen.value){
+                    openMenuBar()
+                }
+            }
+        }
+        function openMenuBar(){
             isMenuOpen.value = !isMenuOpen.value;
         }
         const searchSongHandler = (query: string) => {
