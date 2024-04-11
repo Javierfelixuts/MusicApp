@@ -3,7 +3,6 @@
         <div class="flex items-center justify-center bg-red-lightest">
             <div class="bg-white shadow-lg rounded-lg z-10 w-full">
                 <div class="flex" style="padding-top: 20px;">
-                    <img class="hidden object-contain h-48 w-96 rounded md:block ml-5" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
                     <img class="block md:hidden rounded ml-3 mt-3" style="height: 50px;" src="https://tailwindcss.com/img/card-top.jpg" alt="Album Pic">
                     <div class="w-full px-4 py-1">
                         
@@ -75,11 +74,12 @@
                     </div>
                 </div>
                 <div class="mx-8 py-4">
-                    <div class="flex justify-between text-sm text-grey-darker">
-                        <p ref="currentTimeLabel" id="currentime">0:00</p>
-                        <p ref="durationSongLabel" id="durationSong">0.00</p>
-                    </div>
+                    
                     <div class="mt-1">
+                        <div class="flex justify-between text-sm text-grey-darker">
+                            <p ref="currentTimeLabel" id="currentime">0:00</p>
+                            <p ref="durationSongLabel" id="durationSong">0.00</p>
+                        </div>
                         <input
                         @input="updateProgessBarPlayer"
                         class="w-full in-range:border-green-500" type="range" min="0" max="100" 
@@ -91,10 +91,10 @@
                              <div ref="timeline" class="w-0 h-1 bg-red-500 rounded-l-lg  relative" style="width: 100%;"></div>
                              <div id="timelineBall" class="w-4 h-4 bg-pink-400 rounded-full shadow"></div>
                             </div> -->
-                        <input 
-                        @change="changeVolume"
-                        class="volume" ref="volume" type="range" id="vol" value="20" name="vol" min="0" max="100">
                         </div>
+                        <input 
+                        @input="changeVolume"
+                        id="volume" ref="volume" type="range" value="20" name="volume" min="0" max="100">
                     </div>
             </div>
         </div>
@@ -111,11 +111,12 @@ import { useMusicList } from '../stores/musicList';
 import { useChangeHeaderColor } from '../stores/changeHeaderColor';
 import { Song } from '../types/Song';
 import { random } from 'gsap';
+import  Mute from '../components/icons/mute.svg'
 
 export default defineComponent({
     name: 'MusicPlayer',
     components: {
-        IconHeart
+        IconHeart,
     },
     setup() {
         const render = ref(0);
@@ -347,6 +348,7 @@ export default defineComponent({
             colorStorage,
             render,
             colorHeader,
+            Mute,
             play,
             pause,
             preSong,
@@ -383,52 +385,57 @@ export default defineComponent({
   cursor: pointer;
 } */
 
-#progressBar {
+#progressBar, #volume {
   -webkit-appearance: none;
+  position: relative;
   appearance: none; 
-  width: 100%;
+  width: 70%;
   cursor: pointer;
   outline: none;
   overflow: hidden;
   border-radius: 16px;
 }
+#volume{
+    width: 30%;
+}
 
-#progressBar::-webkit-slider-runnable-track {
-  height: 15px;
+#progressBar::-webkit-slider-runnable-track, 
+#volume::-webkit-slider-runnable-track {
+  height: 10px;
   background: #ccc;
   border-radius: 16px;
 }
 
-#progressBar::-moz-range-track {
-  height: 15px;
+#progressBar::-moz-range-track,
+#volume::-moz-range-track
+ {
+  height: 10px;
   background: #ccc;
   border-radius: 16px;
 }
 
-#progressBar::-webkit-slider-thumb {
+#progressBar::-webkit-slider-thumb,
+#volume::-webkit-slider-thumb
+ {
   -webkit-appearance: none;
   appearance: none; 
-  height: 15px;
-  width: 15px;
+  height: 10px;
+  width: 10px;
   background-color: #fff;
   border-radius: 50%;
   border: 2px solid v-bind(colorHeader);
   box-shadow: -407px 0 0 400px v-bind(colorHeader);
 }
 
-#progressBar::-moz-range-thumb {
-  height: 15px;
-  width: 15px;
+#progressBar::-moz-range-thumb,
+#volume::-moz-range-thumb
+ {
+  height: 10px;
+  width: 10px;
   background-color: #fff;
   border-radius: 50%;
   border: 1px solid v-bind(colorHeader);
   box-shadow: -407px 0 0 400px v-bind(colorHeader);
 }
 
-
-.volume {
-    width: 100px;
-    outline: black;
-    border: 3px solid v-bind(colorHeader);
-}
 </style>
