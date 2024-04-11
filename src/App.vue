@@ -15,9 +15,6 @@
               </div>
           </Transition>
         </div>
-        <div class="col-start-5 col-end-13 mx-3">
-          <MusicPlayer v-if="$route.meta.show" />
-        </div>
   </div>
 
 </router-view>
