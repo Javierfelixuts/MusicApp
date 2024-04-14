@@ -1,6 +1,6 @@
 <template>
     <svg
-    class="cursor-pointer hover:drop-shadow-lg"
+    class="svg-custom-filter cursor-pointer hover:drop-shadow-lg"
     @click="fillHeart" 
         width="28" height="28" viewBox="0 0 23.962452 21.528046" version="1.1" id="svg5"
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -71,9 +71,16 @@ export default defineComponent({
             }
         }
         return {
+            colorHeader,
             fillIcon,
             fillHeart
         }
     }
 })
 </script>
+
+<style scoped>
+.svg-custom-filter{
+    filter: drop-shadow(2px 4px 6px v-bind(colorHeader));
+}
+</style>
